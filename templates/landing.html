@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Cookbook</title>
+</head>
+<body>
+   {% for recipe_card in recipe_cards %}
+      {{recipe_card.img}}
+      {{recipe_card.recipe_name}}
+      {{recipe_card.cuisine}}
+      {{recipe_card.recipe}}
+      {{recipe_card.cooked}}
+   {% endfor %}
+</body>
+</html>
