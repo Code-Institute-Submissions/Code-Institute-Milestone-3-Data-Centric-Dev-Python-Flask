@@ -1,0 +1,19 @@
+.callout-container {
+  height: calc(100vh - 60px);
+  background: url("./img/callout.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.callout-container .jumbotron {
+  background: rgba(255, 255, 255, 0.66);
+}
+.callout-container .waves-effect {
+  margin: 33px;
+}
+
+/*# sourceMappingURL=main.css.map */

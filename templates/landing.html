@@ -1,10 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!-- Navbar -->
+<nav>
+   <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Cookbook Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+         <li><a href="sass.html">Sign In |</a></li>
+         <a class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign Up</a>
+      </ul>
+   </div>
+</nav>
+<!-- /Navbar -->
+
+<!-- Hamburger menu -->
+<ul class="sidenav slide-out" id="mobile-demo">
+   <li><a class="sidenav-close" href="#!">Close Menu</a></li>
+   <li><a href="#">Sing In</a></li>
+   <li><a href="#">Sing Up</a></li>
+</ul>
+<!-- /Hamburger menu -->
+
+<!-- Callout -->
+<section class="callout-container">
+   <div class="container">
+      <div class="jumbotron">
+         <h1 class="center-align">Create your own cookbook</h1>
+         <div class="center-align"> <a class="waves-effect waves-light btn">Sign Up</a></div>
+      </div>
+   </div>
+</section>
+<!-- /Callout -->
+
+<!-- Sing Up section -->
+<section>
+   <div class="row container">
+      <h3 class="center-align">Create your account</h3>
+      <form class="col s12">
+         <div class="row">
+            <div class="input-field col s12">
+               <input id="email" type="email" class="validate">
+               <label for="email">Email</label>
+            </div>
+         </div>
+         <div class="row">
+            <div class="input-field col s12">
+               <input id="password" type="password" class="validate">
+               <label for="password">Password</label>
+            </div>
+         </div>
+         <div class="center-align"> <a class="waves-effect waves-light btn">Sign Up</a></div>
+      </form>
+   </div>
+
+</section>
+<!-- /Sing Up section -->
+
+
+
+<!--
    {% for recipe_card in recipe_cards %}
       {{recipe_card.img}}
       {{recipe_card.recipe_name}}
       {{recipe_card.cuisine}}
       {{recipe_card.recipe}}
       {{recipe_card.cooked}}
-   {% endfor %}
+-->
+{% endfor %}
 {% endblock %}
