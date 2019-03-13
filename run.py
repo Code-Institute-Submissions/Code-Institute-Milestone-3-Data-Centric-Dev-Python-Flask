@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -16,6 +16,11 @@ mongo = PyMongo(app)
 @app.route("/landing_page")
 def landing_page():
    return render_template("landing.html", recipe_cards=mongo.db.recipe_cards.find())
+
+
+@app.route("/log_in")
+def log_in():
+   return render_template("login.html")
 
 if __name__ == '__main__':
    app.run(debug=True)
