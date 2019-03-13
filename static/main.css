@@ -16,4 +16,19 @@
   margin: 33px;
 }
 
+.sing-up-container {
+  height: 100vh;
+}
+@media screen and (min-width: 993px) {
+  .sing-up-container .container {
+    width: 33%;
+  }
+}
+.sing-up-container .sign-up--padding-top {
+  padding-top: 10%;
+}
+.sing-up-container .sign-up--padding-top h3 {
+  margin-top: 0;
+}
+
 /*# sourceMappingURL=main.css.map */

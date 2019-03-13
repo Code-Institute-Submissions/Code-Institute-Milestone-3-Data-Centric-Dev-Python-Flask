@@ -19,3 +19,23 @@
       margin: 33px
    }
  }
+
+// SIGN UP SECTION
+
+.sing-up-container {
+   height: 100vh;
+
+   .container {
+      @media screen and (min-width: 993px) {
+         width: 33% !important;
+       }
+   }
+
+   .sign-up--padding-top {
+      padding-top: 10%;
+
+      h3 {
+         margin-top: 0;
+      }
+   }
+}
