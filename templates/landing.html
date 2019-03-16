@@ -7,7 +7,7 @@
       <a href="#!" class="brand-logo">Cookbook Logo</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-         <li><a href="{{ url_for('log_in') }}">Log In |</a></li>
+         <li><a href="{{ url_for('login') }}">Log In |</a></li>
          <a href="#sign-up" class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign Up</a>
       </ul>
    </div>
@@ -37,20 +37,20 @@
 <section class="sing-up-container" id="sign-up">
    <div class="row container sign-up--padding-top">
       <h3 class="center-align">Create your account</h3>
-      <form class="col s12">
+      <form method="POST" action="{{ url_for('landing_page') }}" class="col s12">
          <div class="row">
             <div class="input-field col s12">
-               <input id="username" type="text" class="validate">
+               <input id="username" name="username" type="text" class="validate">
                <label for="username">Username</label>
             </div>
          </div>
          <div class="row">
             <div class="input-field col s12">
-               <input id="password" type="password" class="validate">
+               <input id="password" name="password" type="password" class="validate">
                <label for="password">Password</label>
             </div>
          </div>
-         <div class="center-align"><a href="{{ url_for('log_in') }}" class="waves-effect waves-light btn">Sign Up</a></div>
+         <div class="center-align"><button type="submit" class="waves-effect waves-light btn">Sign Up</button></div>
       </form>
    </div>
 </section>
