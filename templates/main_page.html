@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="arrow-back"><a href="{{ url_for('landing_page') }}" class="waves-effect waves-light btn"><i
+         class="material-icons">skip_next</i></a></div>
+<h2>Welcome to your cookbook, {{ username }}!</h2>
+
+<form action="">
+   <label for="pet-select">Sort by:</label>
+   <select style="display: inline-block;" id="pet-select">
+      <option value="" disabled selected>sort</option>
+      <option value="dog">Name</option>
+      <option value="cat">Cuisine</option>
+   </select>
+</form>
+
+{% endblock %}

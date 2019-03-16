@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Connection to MongoDB Atlas
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGODB_URI_COOKBOOK')
-app.secret_key = '_5#y2L"F4Q8z\n\xec]/'
+app.secret_key = '_5#y2L"F4Q8z\n\xec]/' #TODO this should be hidden - use os.getenv()
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
@@ -43,7 +43,7 @@ def login():
       if login_user:
          if bcrypt.check_password_hash(login_user["password"].encode('utf-8'), request.form["password"]):
             session["username"] = request.form["username"]
-            return "You are logged in!"
+            return redirect(url_for("main_page", username=session["username"]))
          return "Invalid username/password combination"
       return "Invalid username"
    
@@ -52,6 +52,12 @@ def login():
       return "You are logged in as " + session["username"]
    '''
    return render_template("login.html")
+
+@app.route("/main_page")
+def main_page():
+   username = request.args.get("username", None)
+
+   return render_template("main_page.html", username=username)
 
 
 if __name__ == '__main__':
