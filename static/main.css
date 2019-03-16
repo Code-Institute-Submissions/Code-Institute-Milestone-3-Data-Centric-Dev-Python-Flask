@@ -46,4 +46,19 @@
   margin-top: 0;
 }
 
+.text-align--right {
+  text-align: right;
+}
+
+.container-select .display-flex {
+  display: flex;
+}
+.container-select .margin--auto {
+  margin: auto;
+}
+
+.container-cards .image {
+  width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */
