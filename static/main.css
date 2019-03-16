@@ -21,13 +21,28 @@
 }
 @media screen and (min-width: 993px) {
   .sing-up-container .container {
-    width: 33%;
+    width: 33% !important;
   }
 }
 .sing-up-container .sign-up--padding-top {
   padding-top: 10%;
 }
 .sing-up-container .sign-up--padding-top h3 {
+  margin-top: 0;
+}
+
+.login-container {
+  height: 100vh;
+}
+@media screen and (min-width: 993px) {
+  .login-container .container {
+    width: 33% !important;
+  }
+}
+.login-container .login--padding-top {
+  padding-top: 10%;
+}
+.login-container .login--padding-top h3 {
   margin-top: 0;
 }
 

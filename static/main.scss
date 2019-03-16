@@ -39,3 +39,23 @@
       }
    }
 }
+
+// LOGIN SECTION
+
+.login-container {
+   height: 100vh;
+
+   .container {
+      @media screen and (min-width: 993px) {
+         width: 33% !important;
+       }
+   }
+
+   .login--padding-top {
+      padding-top: 10%;
+
+      h3 {
+         margin-top: 0;
+      }
+   }
+}
