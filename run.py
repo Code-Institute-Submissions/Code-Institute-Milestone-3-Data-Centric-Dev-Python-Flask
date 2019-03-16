@@ -18,9 +18,9 @@ bcrypt = Bcrypt(app)
 @app.route("/")
 @app.route("/landing_page", methods=['GET', 'POST'])
 def landing_page():
+   # Sign Up section
    if request.method == 'POST':
       users = mongo.db.users
-      print(request.form["username"])
       existing_user = users.find_one({"name" : request.form["username"]})
 
       if existing_user is None:
@@ -30,7 +30,6 @@ def landing_page():
          return redirect(url_for("login"))
       
       return "The username already exist!"
-
 
    return render_template("landing.html", recipe_cards=mongo.db.recipe_cards.find())
 
