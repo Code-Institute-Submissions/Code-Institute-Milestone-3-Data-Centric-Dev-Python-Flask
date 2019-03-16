@@ -1,16 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="arrow-back"><a href="{{ url_for('landing_page') }}" class="waves-effect waves-light btn"><i
-         class="material-icons">skip_next</i></a></div>
-<h2>Welcome to your cookbook, {{ username }}!</h2>
 
-<form action="">
-   <label for="pet-select">Sort by:</label>
-   <select style="display: inline-block;" id="pet-select">
-      <option value="" disabled selected>sort</option>
-      <option value="dog">Name</option>
-      <option value="cat">Cuisine</option>
-   </select>
-</form>
+<!-- Logout button -->
+<div class="arrow-back text-align--right"><a href="{{ url_for('landing_page') }}" class="waves-effect waves-light btn"><i
+         class="material-icons">skip_next</i></a></div>
+<!-- /Logout button -->
+
+<h2 class="center-align">Welcome to your cookbook, {{ user.name }}!</h2>
+
+<!-- Sort by Select -->
+<div class="container-select">
+   <div class="row display-flex">
+      <div class="col s2 margin--auto">
+         <form action="" method="POST">
+            <label for="pet-select">Sort by:</label>
+            <select style="display: inline-block;" id="pet-select">
+               <option value="" disabled selected>sort</option>
+               <option value="name">Name</option>
+               <option value="cuisine">Cuisine</option>
+            </select>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- Sort by Select -->
+
+<!-- Cards container -->
+<div class="container container-cards">
+   <div class="row">
+      {% for recipe_card in user.recipe_cards %}
+      <div class="col s4">
+         <div class="card">
+            <img class="image"
+               src="{{ recipe_card.img }}"
+               alt="meal">
+
+            <div class="card-description">
+               <p><strong>Name:</strong> {{ recipe_card.recipe_name }}</p>
+               <p><strong>Cuisine:</strong> {{ recipe_card.cuisine }}</p>
+               <p><strong>Recipe:</strong> {{ recipe_card.recipe }}</p>
+               <div class="center-align">
+                  <button>Read more</button>
+               </div>
+               <button>Coocked</button>
+               <button>Edit</button>
+               <button>Remove</button>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+
+      <div class="col s4">
+            <a href="{{ url_for('add_page') }}"><div class="card">
+           Add a new Card book
+         </div></a>
+      </div>
+   </div>
+</div>
+
+<!-- /Cards container -->
 
 {% endblock %}

@@ -25,13 +25,33 @@ def landing_page():
 
       if existing_user is None:
          hashpass = bcrypt.generate_password_hash(request.form["password"]).decode("utf-8")
-         users.insert({"name" : request.form["username"], "password" : hashpass})
-         session["username"] = request.form["username"]
+
+         # Insert default data to mongoDB Atlas
+         users.insert({
+            "name" : request.form["username"],
+            "password" : hashpass,
+            "recipe_cards" : [
+               {
+               "recipe_name" : "Spaghetti Bolognese",
+               "cuisine": "Italian",
+               "recipe" : "Spaghetty with tomato's sauce",
+               "cooked" : 0,
+               "img" : "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg"
+               },
+               {
+               "recipe_name" : "China",
+               "cuisine": "Chinese",
+               "recipe" : "China with chilli peppers",
+               "cooked" : 0,
+               "img" : "https://www.intrepidtravel.com/sites/intrepid/files/styles/low-quality/public/elements/product/hero/RFA-heroes_0012_china_chengdu_IMG_6454.jpg"
+               }
+               ]
+            })
          return redirect(url_for("login"))
       
       return "The username already exist!"
 
-   return render_template("landing.html", recipe_cards=mongo.db.recipe_cards.find())
+   return render_template("landing.html")
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -47,18 +67,20 @@ def login():
          return "Invalid username/password combination"
       return "Invalid username"
    
-   '''
-   if "username" in session:
-      return "You are logged in as " + session["username"]
-   '''
    return render_template("login.html")
+
 
 @app.route("/main_page")
 def main_page():
-   username = request.args.get("username", None)
+   users = mongo.db.users
+   login_user = users.find_one({"name" : request.args.get("username", None)})
 
-   return render_template("main_page.html", username=username)
+   return render_template("main_page.html", user=login_user)
 
+
+@app.route("/main_page/add_cookcard/")
+def add_page():
+   return render_template("add_cookcard.html")
 
 if __name__ == '__main__':
    app.run(debug=True)
