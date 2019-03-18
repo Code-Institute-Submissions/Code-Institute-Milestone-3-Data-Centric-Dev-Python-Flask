@@ -66,7 +66,7 @@ def login():
          # If user exist in database then check password
          if bcrypt.check_password_hash(login_user["password"].encode('utf-8'), request.form["password"]):
             session["username"] = request.form["username"]
-            
+
             # If login & password matches then redirect user to main page, otherwise pop out errors
             if "username" in session:
                return redirect(url_for("main_page", username=session["username"]))
@@ -85,8 +85,25 @@ def main_page(username):
    return render_template("main_page.html", user=login_user)
 
 
-@app.route("/main_page/<username>/add_cookcard")
+@app.route("/main_page/<username>/add_cookcard", methods=['GET', 'POST'])
 def add_page(username):
+   if request.method == 'POST':
+      users = mongo.db.users
+
+      users.update( {"name": username},
+      {
+         "$push": {"recipe_cards": {
+            "recipe_name" : request.form["recipe_name"],
+            "cuisine": request.form["cuisine"],
+            "recipe" : request.form["recipe"],
+            "cooked" : 0,
+            "img" : request.form["upload_picture"]
+            }
+         }
+      })
+
+      return redirect(url_for("main_page", username=session["username"]))
+
    return render_template("add_cookcard.html")
 
 if __name__ == '__main__':
