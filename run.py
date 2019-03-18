@@ -59,11 +59,15 @@ def login():
    if request.method == 'POST':
       users = mongo.db.users
       login_user = users.find_one({"name" : request.form["username"]})
-   
+
+      # Verifying users if they have an account
       if login_user:
+
+         # If user exist in database then check password
          if bcrypt.check_password_hash(login_user["password"].encode('utf-8'), request.form["password"]):
             session["username"] = request.form["username"]
-
+            
+            # If login & password matches then redirect user to main page, otherwise pop out errors
             if "username" in session:
                return redirect(url_for("main_page", username=session["username"]))
 
