@@ -63,17 +63,20 @@ def login():
       if login_user:
          if bcrypt.check_password_hash(login_user["password"].encode('utf-8'), request.form["password"]):
             session["username"] = request.form["username"]
-            return redirect(url_for("main_page", username=session["username"]))
+
+            if "username" in session:
+               return redirect(url_for("main_page", username=session["username"]))
+
          return "Invalid username/password combination"
       return "Invalid username"
    
    return render_template("login.html")
 
 
-@app.route("/main_page")
-def main_page():
+@app.route("/main_page/<username>")
+def main_page(username):
    users = mongo.db.users
-   login_user = users.find_one({"name" : request.args.get("username", None)})
+   login_user = users.find_one({"name" : username})
 
    return render_template("main_page.html", user=login_user)
 
