@@ -81,8 +81,8 @@ def main_page(username):
    return render_template("main_page.html", user=login_user)
 
 
-@app.route("/main_page/add_cookcard/")
-def add_page():
+@app.route("/main_page/<username>/add_cookcard")
+def add_page(username):
    return render_template("add_cookcard.html")
 
 if __name__ == '__main__':

@@ -51,7 +51,7 @@
       {% endfor %}
 
       <div class="col s4">
-            <a href="{{ url_for('add_page') }}"><div class="card">
+            <a href="{{ url_for('add_page', username=session['username']) }}"><div class="card">
            Add a new Card book
          </div></a>
       </div>
