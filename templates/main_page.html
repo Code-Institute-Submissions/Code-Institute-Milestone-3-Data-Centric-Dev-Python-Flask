@@ -43,7 +43,7 @@
                   <button>Read more</button>
                </div>
                <button>Coocked</button>
-               <button>Edit</button>
+               <a href="{{ url_for('edit_page', username=session['username'], recipe_name=recipe_card.recipe_name) }}">Edit</a>
                <button>Remove</button>
             </div>
          </div>

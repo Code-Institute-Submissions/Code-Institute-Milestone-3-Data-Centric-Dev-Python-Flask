@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Add cookcard section -->
+<section class="container-cookcard">
+      <!-- Back button-->
+      <div class="arrow-back"><a href="{{ url_for('main_page', username=session['username']) }}"
+                  class="waves-effect waves-light btn"><i class="material-icons">arrow_back</i></a></div>
+      <!-- /Back button-->
+      <div class="container">
+            <h3 class="center-align">Edit Your Food Card</h3>
+
+            <form method="POST" class="col s12">
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="upload_picture" name="upload_picture" type="text" class="validate">
+                              <label for="upload_picture">Upload picture</label>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                              <label for="recipe_name">Food name</label>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="cuisine" name="cuisine" type="text" class="validate">
+                              <label for="cuisine">Cuisine</label>
+                        </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <textarea id="recipe" name="recipe" class="materialize-textarea"></textarea>
+                              <label for="recipe">Recipe</label>
+                        </div>
+                  </div>
+                  <div class="center-align">
+                        <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                  </div>
+            </form>
+      </div>
+</section>
+{% endblock%}

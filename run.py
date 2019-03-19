@@ -90,6 +90,7 @@ def add_page(username):
    if request.method == 'POST':
       users = mongo.db.users
 
+      # Update mongoDB Atlas by a new food card
       users.update( {"name": username},
       {
          "$push": {"recipe_cards": {
@@ -105,6 +106,16 @@ def add_page(username):
       return redirect(url_for("main_page", username=session["username"]))
 
    return render_template("add_cookcard.html")
+
+
+@app.route("/main_page/<username>/edit_cookcard/<recipe_name>", methods=['GET', 'POST'])
+def edit_page(username, recipe_name):
+   user = mongo.db.users.find({"recipe_cards.recipe_name": recipe_name}, {"recipe_cards": {"$elemMatch": {"recipe_name": recipe_name}}})
+   #foodcard = user.find({"recipe_name": recipe_name})
+   print("-----------PRINT----------")
+   print(user)
+   return render_template("edit_cookcard.html")
+
 
 if __name__ == '__main__':
    app.run(debug=True)
