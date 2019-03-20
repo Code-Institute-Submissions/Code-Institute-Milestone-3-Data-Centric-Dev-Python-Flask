@@ -112,29 +112,35 @@ def add_page(username):
 def edit_page(username, recipe_name):
 
    # It returns just one object in array of recipe_cards
-   foodcard = mongo.db.users.find_one({
+   cookcard = mongo.db.users.find_one({
       "name": username,
    },
       {"recipe_cards": {"$elemMatch": {"recipe_name": recipe_name}} }
    )
 
-   """
-   THIS IS FOR UPDATE SECTION
+   return render_template("edit_cookcard.html", cookcard=cookcard["recipe_cards"][0])
 
-   user = mongo.db.users.update(
-      {
-         "name": username,
-         "recipe_cards.recipe_name": recipe_name
-      },
-      {
-         "$set": {
-            "recipe_cards.$.recipe_name": "FUNGUJE TOOOO"
+@app.route("/main_page/<username>/update_foodcard/<recipe_name>", methods=['GET', 'POST'])
+def update_cookcard(username, recipe_name):
+   if request.method == 'POST':
+      user = mongo.db.users
+
+      user.update(
+         {
+            "name": username,
+            "recipe_cards.recipe_name": recipe_name
+         },
+         {
+            "$set": {
+               "recipe_cards.$.img": request.form["upload_picture"],
+               "recipe_cards.$.recipe_name": request.form["recipe_name"],
+               "recipe_cards.$.cuisine": request.form["cuisine"],
+               "recipe_cards.$.recipe": request.form["recipe"]
+            }
          }
-      }
-   )
-   """
-   return render_template("edit_cookcard.html", foodcard=foodcard["recipe_cards"][0])
+      )
 
+      return redirect(url_for("main_page", username=session["username"]))
 
 if __name__ == '__main__':
    app.run(debug=True)
