@@ -110,11 +110,30 @@ def add_page(username):
 
 @app.route("/main_page/<username>/edit_cookcard/<recipe_name>", methods=['GET', 'POST'])
 def edit_page(username, recipe_name):
-   user = mongo.db.users.find({"recipe_cards.recipe_name": recipe_name}, {"recipe_cards": {"$elemMatch": {"recipe_name": recipe_name}}})
-   #foodcard = user.find({"recipe_name": recipe_name})
-   print("-----------PRINT----------")
-   print(user)
-   return render_template("edit_cookcard.html")
+
+   # It returns just one object in array of recipe_cards
+   foodcard = mongo.db.users.find_one({
+      "name": username,
+   },
+      {"recipe_cards": {"$elemMatch": {"recipe_name": recipe_name}} }
+   )
+
+   """
+   THIS IS FOR UPDATE SECTION
+
+   user = mongo.db.users.update(
+      {
+         "name": username,
+         "recipe_cards.recipe_name": recipe_name
+      },
+      {
+         "$set": {
+            "recipe_cards.$.recipe_name": "FUNGUJE TOOOO"
+         }
+      }
+   )
+   """
+   return render_template("edit_cookcard.html", foodcard=foodcard["recipe_cards"][0])
 
 
 if __name__ == '__main__':
