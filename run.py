@@ -142,6 +142,27 @@ def update_cookcard(username, recipe_name):
 
       return redirect(url_for("main_page", username=session["username"]))
 
+
+@app.route("/main_page/<username>/remove_foodcard/<recipe_name>", methods=['GET', 'POST'])
+def remove_cookcard(username, recipe_name):
+   if request.method == "POST":
+      user = mongo.db.users
+
+      user.update(
+         {
+            "name": username
+         },
+         {
+            "$pull": {
+               "recipe_cards": {"recipe_name": recipe_name},
+            }
+         }
+      )
+
+      return redirect(url_for("main_page", username=session["username"]))
+
+
+
 if __name__ == '__main__':
    app.run(debug=True)
 
