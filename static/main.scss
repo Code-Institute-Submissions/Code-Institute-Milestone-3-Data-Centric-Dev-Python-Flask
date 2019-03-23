@@ -62,6 +62,10 @@
 
 // MAIN PAGE
 
+.text-align--right {
+   text-align: right;
+}
+
 .container-select {
    .display-flex {
       display: flex;
@@ -71,6 +75,13 @@
       margin: auto;
    }
 }
+
+.container-cards {
+   .icon--inline-block {
+      display: inline-block;
+   }
+}
+
 
 
 

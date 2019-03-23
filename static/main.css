@@ -46,11 +46,19 @@
   margin-top: 0;
 }
 
+.text-align--right {
+  text-align: right;
+}
+
 .container-select .display-flex {
   display: flex;
 }
 .container-select .margin--auto {
   margin: auto;
+}
+
+.container-cards .icon--inline-block {
+  display: inline-block;
 }
 
 /*# sourceMappingURL=main.css.map */

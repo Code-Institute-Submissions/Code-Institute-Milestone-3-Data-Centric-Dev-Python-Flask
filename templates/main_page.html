@@ -39,16 +39,18 @@
                      class="material-icons right">more_vert</i></span>
                <p>{{ recipe_card.cuisine }}</p>
                <div class="card-action">
-                  <p><a class="btn-floating waves-effect waves-light yellow"
+                  <div class="right">
+                  <p class="icon--inline-block"><a class="btn-floating waves-effect waves-light yellow"
                         href="{{ url_for('edit_page', username=session['username'], recipe_name=recipe_card.recipe_name) }}"><i
                            class="material-icons">edit</i>Edit</a>
                   </p>
                   <form
                      action="{{ url_for('remove_cookcard', username=session['username'], recipe_name=recipe_card.recipe_name) }}"
-                     method="POST">
+                     method="POST" class="icon--inline-block">
                      <button class="btn-floating waves-effect waves-light red"><i
                            class="material-icons">remove</i>Remove</button>
                   </form>
+               </div>
                </div>
             </div>
 
