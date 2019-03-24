@@ -3,6 +3,11 @@ from flask import Flask, render_template, url_for, session, request, redirect
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
+from werkzeug.utils import secure_filename
+from flask import send_from_directory
+
+UPLOAD_FOLDER = './static/img'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 
@@ -10,9 +15,14 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGODB_URI_COOKBOOK')
 app.secret_key = '_5#y2L"F4Q8z\n\xec]/' #TODO this should be hidden - use os.getenv()
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/")
@@ -90,22 +100,34 @@ def add_page(username):
    if request.method == 'POST':
       users = mongo.db.users
 
-      # Update mongoDB Atlas by a new food card
-      users.update( {"name": username},
-      {
-         "$push": {"recipe_cards": {
-            "recipe_name" : request.form["recipe_name"],
-            "cuisine": request.form["cuisine"],
-            "recipe" : request.form["recipe"],
-            "cooked" : 0,
-            "img" : request.form["upload_picture"]
+      # Upload images
+      file = request.files['upload_picture']
+
+      if file and allowed_file(file.filename):
+         filename = secure_filename(file.filename)
+         mongo.save_file(filename, file)
+         #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+         # Update mongoDB Atlas by a new food card
+         users.update( {"name": username},
+         {
+            "$push": {"recipe_cards": {
+               "recipe_name" : request.form["recipe_name"],
+               "cuisine": request.form["cuisine"],
+               "recipe" : request.form["recipe"],
+               "cooked" : 0,
+               "img" : filename
+               }
             }
-         }
-      })
+         })
 
       return redirect(url_for("main_page", username=session["username"]))
 
    return render_template("add_cookcard.html")
+
+@app.route("/file/<filename>")
+def file(filename):
+   return mongo.send_file(filename)
 
 
 @app.route("/main_page/<username>/edit_cookcard/<recipe_name>", methods=['GET', 'POST'])
