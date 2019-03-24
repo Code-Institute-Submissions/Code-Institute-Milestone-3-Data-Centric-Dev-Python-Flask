@@ -101,29 +101,43 @@ def add_page(username):
       users = mongo.db.users
 
       # Upload images
-      file = request.files['upload_picture']
+      if "upload_picture" in request.files:
+         file = request.files['upload_picture']
 
-      if file and allowed_file(file.filename):
-         filename = secure_filename(file.filename)
-         mongo.save_file(filename, file)
-         #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+         if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            mongo.save_file(filename, file)
 
-         # Update mongoDB Atlas by a new food card
-         users.update( {"name": username},
-         {
-            "$push": {"recipe_cards": {
-               "recipe_name" : request.form["recipe_name"],
-               "cuisine": request.form["cuisine"],
-               "recipe" : request.form["recipe"],
-               "cooked" : 0,
-               "img" : filename
+            # Update mongoDB Atlas by a new food card
+            users.update( {"name": username},
+            {
+               "$push": {"recipe_cards": {
+                  "recipe_name" : request.form["recipe_name"],
+                  "cuisine": request.form["cuisine"],
+                  "recipe" : request.form["recipe"],
+                  "cooked" : 0,
+                  "img" : filename
+                  }
                }
-            }
-         })
+            })
+      else:
+         # TODO what about remove below and if statement above?  if "upload_picture" in request.files: ??
+         users.update( {"name": username},
+               {
+                  "$push": {"recipe_cards": {
+                     "recipe_name" : request.form["recipe_name"],
+                     "cuisine": request.form["cuisine"],
+                     "recipe" : request.form["recipe"],
+                     "cooked" : 0,
+                     "img" : ""
+                     }
+                  }
+               })
 
       return redirect(url_for("main_page", username=session["username"]))
 
    return render_template("add_cookcard.html")
+
 
 @app.route("/file/<filename>")
 def file(filename):
