@@ -9,13 +9,19 @@
       <div class="container">
             <h3 class="center-align">Add Your New Food Card</h3>
 
-            <form method="POST" class="col s12">
+            <form method="POST" class="col s12" enctype="multipart/form-data">
+
+
+
                   <div class="row">
                         <div class="input-field col s12">
-                              <input id="upload_picture" name="upload_picture" type="text" class="validate">
-                              <label for="upload_picture">Upload picture</label>
+                              <input id="upload_picture" name="upload_picture" type="file" class="validate">
+
                         </div>
                   </div>
+
+
+
                   <div class="row">
                         <div class="input-field col s12">
                               <input id="recipe_name" name="recipe_name" type="text" class="validate">
