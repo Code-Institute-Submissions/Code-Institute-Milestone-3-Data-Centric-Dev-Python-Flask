@@ -6,7 +6,6 @@ from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 
-UPLOAD_FOLDER = './static/img'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -15,7 +14,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGODB_URI_COOKBOOK')
 app.secret_key = '_5#y2L"F4Q8z\n\xec]/' #TODO this should be hidden - use os.getenv()
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
