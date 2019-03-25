@@ -103,6 +103,10 @@ def add_page(username):
       if "upload_picture" in request.files:
          file = request.files['upload_picture']
 
+         if not allowed_file(file.name):
+            #TODO do it in better way when the extantion is not allowed
+            return "extenstion is not allowed"
+
          if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
 
