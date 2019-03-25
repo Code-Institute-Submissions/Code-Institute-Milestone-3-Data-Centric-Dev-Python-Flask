@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 
 UPLOAD_FOLDER = './static/img'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 
