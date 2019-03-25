@@ -106,9 +106,10 @@ def add_page(username):
 
          if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            change_filename = filename + "-" + request.form["recipe_name"] + "-" + request.form["cuisine"]
-            print("---------PRINT----------")
-            print(change_filename)
+
+            # Create a unique name file
+            change_filename = request.form["recipe_name"] + "_" + request.form["cuisine"] + "_" + filename
+
             mongo.save_file(change_filename, file)
 
             # Update mongoDB Atlas by a new food card
