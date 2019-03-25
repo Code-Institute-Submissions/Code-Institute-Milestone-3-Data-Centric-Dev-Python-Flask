@@ -50,7 +50,7 @@
                               class="material-icons">edit</i>Edit</a>
                      </p>
                      <form
-                        action="{{ url_for('remove_cookcard', username=session['username'], recipe_name=recipe_card.recipe_name) }}"
+                        action="{{ url_for('remove_cookcard', username=session['username'], recipe_name=recipe_card.recipe_name, img_name=recipe_card.img) }}"
                         method="POST" class="icon--inline-block">
                         <button class="btn-floating waves-effect waves-light red"><i
                               class="material-icons">remove</i>Remove</button>

@@ -106,7 +106,10 @@ def add_page(username):
 
          if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            mongo.save_file(filename, file)
+            change_filename = filename + "-" + request.form["recipe_name"] + "-" + request.form["cuisine"]
+            print("---------PRINT----------")
+            print(change_filename)
+            mongo.save_file(change_filename, file)
 
             # Update mongoDB Atlas by a new food card
             users.update( {"name": username},
@@ -116,12 +119,11 @@ def add_page(username):
                   "cuisine": request.form["cuisine"],
                   "recipe" : request.form["recipe"],
                   "cooked" : 0,
-                  "img" : filename
+                  "img" : change_filename
                   }
                }
             })
       else:
-         # TODO what about remove below and if statement above?  if "upload_picture" in request.files: ??
          users.update( {"name": username},
                {
                   "$push": {"recipe_cards": {
@@ -179,11 +181,15 @@ def update_cookcard(username, recipe_name):
       return redirect(url_for("main_page", username=session["username"]))
 
 
-@app.route("/main_page/<username>/remove_foodcard/<recipe_name>", methods=['GET', 'POST'])
-def remove_cookcard(username, recipe_name):
+@app.route("/main_page/<username>/remove_foodcard/<recipe_name>/<img_name>", methods=['GET', 'POST'])
+def remove_cookcard(username, recipe_name, img_name):
    if request.method == "POST":
       user = mongo.db.users
+      fs_file = mongo.db.fs.files
+      fs_chunks = mongo.db.fs.chunks
+      fs_file_id = fs_file.find_one({"filename": img_name})
 
+      # Remove selected foodcard from DB
       user.update(
          {
             "name": username
@@ -193,6 +199,16 @@ def remove_cookcard(username, recipe_name):
                "recipe_cards": {"recipe_name": recipe_name},
             }
          }
+      )
+
+      # Remove img from DB fs.file
+      fs_file.remove(
+         {"filename": img_name}
+      )
+
+       # Remove img from DB fs.chunks
+      fs_chunks.remove(
+         {"files_id": ObjectId(fs_file_id["_id"])}
       )
 
       return redirect(url_for("main_page", username=session["username"]))
