@@ -60,5 +60,8 @@
 .container-cards .icon--inline-block {
   display: inline-block;
 }
+.container-cards .card .card-image img {
+  height: 175px;
+}
 
 /*# sourceMappingURL=main.css.map */
