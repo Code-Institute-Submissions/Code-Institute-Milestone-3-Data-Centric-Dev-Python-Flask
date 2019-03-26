@@ -62,7 +62,7 @@
             <div class="card-reveal">
                <span class="card-title grey-text text-darken-4">{{ recipe_card.recipe_name }}<i
                      class="material-icons right">close</i></span>
-               <p>{{ recipe_card.recipe }}</p>
+               <p>{{ recipe_card.recipe|safe }}</p>
             </div>
          </div>
       </div>
