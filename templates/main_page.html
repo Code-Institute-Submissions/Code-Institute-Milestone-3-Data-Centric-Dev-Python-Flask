@@ -32,10 +32,10 @@
       <div class="col s4">
          <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
-               {% if recipe_card.img|length %}
-               <img class="activator" src="{{ url_for('file', filename=recipe_card.img) }}" alt="picture of meal">
+               {% if recipe_card.img == "empty" %}
+               <img class="activator" src="https://shop.countdown.co.nz/Content/Recipes/diamond_spagbol_540x380_5.jpg" alt="default picture of meal">
                {% else %}
-               <img class="activator" src="https://try-sunbasket-staging-assets.s3-us-west-2.amazonaws.com/2018/08/leanclean.jpg" alt="It is empty">
+               <img class="activator" src="{{ url_for('file', filename=recipe_card.img) }}" alt="picture of meal">
                {% endif %}
                
             </div>

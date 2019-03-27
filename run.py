@@ -40,20 +40,13 @@ def landing_page():
             "name" : request.form["username"],
             "password" : hashpass,
             "recipe_cards" : [
-               {
-               "recipe_name" : "Spaghetti Bolognese",
-               "cuisine": "Italian",
-               "recipe" : "Spaghetty with tomato's sauce",
-               "cooked" : 0,
-               "img" : "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg"
-               },
-               {
-               "recipe_name" : "China",
-               "cuisine": "Chinese",
-               "recipe" : "China with chilli peppers",
-               "cooked" : 0,
-               "img" : "https://www.intrepidtravel.com/sites/intrepid/files/styles/low-quality/public/elements/product/hero/RFA-heroes_0012_china_chengdu_IMG_6454.jpg"
-               }
+                  {
+                     "recipe_name" : "Spaghetti Bolognese",
+                     "cuisine": "Italian",
+                     "recipe" : "Spaghetty with tomato's sauce",
+                     "cooked" : 0,
+                     "img" : "empty"
+                  }
                ]
             })
          return redirect(url_for("login"))
@@ -135,7 +128,7 @@ def add_page(username):
                      "cuisine": request.form["cuisine"],
                      "recipe" : request.form["recipe"],
                      "cooked" : 0,
-                     "img" : ""
+                     "img" : "empty"
                      }
                   }
                })
@@ -186,13 +179,12 @@ def update_cookcard(username, recipe_name):
 
 
 @app.route("/main_page/<username>/remove_foodcard/<recipe_name>/<img_name>", methods=['GET', 'POST'])
-def remove_cookcard(username, recipe_name, img_name):
+def remove_cookcard(username, recipe_name, img_name): 
    if request.method == "POST":
       user = mongo.db.users
-      fs_file = mongo.db.fs.files
-      fs_chunks = mongo.db.fs.chunks
-      fs_file_id = fs_file.find_one({"filename": img_name})
-
+      print("---------PRINT 111111 ---------")
+      print(img_name)
+      
       # Remove selected foodcard from DB
       user.update(
          {
@@ -204,16 +196,22 @@ def remove_cookcard(username, recipe_name, img_name):
             }
          }
       )
+      
+      if not img_name == "empty":       
+         fs_file = mongo.db.fs.files
+         fs_chunks = mongo.db.fs.chunks
+         fs_file_id = fs_file.find_one({"filename": img_name})
 
-      # Remove img from DB fs.file
-      fs_file.remove(
-         {"filename": img_name}
-      )
 
-       # Remove img from DB fs.chunks
-      fs_chunks.remove(
-         {"files_id": ObjectId(fs_file_id["_id"])}
-      )
+         # Remove img from DB fs.file
+         fs_file.remove(
+            {"filename": img_name}
+         )
+
+         # Remove img from DB fs.chunks
+         fs_chunks.remove(
+            {"files_id": ObjectId(fs_file_id["_id"])}
+         )
 
       return redirect(url_for("main_page", username=session["username"]))
 
