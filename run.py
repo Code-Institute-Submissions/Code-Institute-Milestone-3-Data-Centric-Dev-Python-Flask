@@ -155,25 +155,72 @@ def edit_page(username, recipe_name):
 
    return render_template("edit_cookcard.html", cookcard=cookcard["recipe_cards"][0])
 
-@app.route("/main_page/<username>/update_foodcard/<recipe_name>", methods=['GET', 'POST'])
-def update_cookcard(username, recipe_name):
+@app.route("/main_page/<username>/update_foodcard/<recipe_name>/<recipe_img>/", methods=['GET', 'POST'])
+def update_cookcard(username, recipe_name, recipe_img):
    if request.method == 'POST':
       user = mongo.db.users
 
-      user.update(
-         {
-            "name": username,
-            "recipe_cards.recipe_name": recipe_name
-         },
-         {
-            "$set": {
-               "recipe_cards.$.img": request.form["upload_picture"],
-               "recipe_cards.$.recipe_name": request.form["recipe_name"],
-               "recipe_cards.$.cuisine": request.form["cuisine"],
-               "recipe_cards.$.recipe": request.form["recipe"]
+      # Upload images
+      if "upload_picture" in request.files:
+         file = request.files['upload_picture']
+
+         if not allowed_file(file.filename):
+            #TODO do it in better way when the extantion is not allowed
+            return "extenstion is not allowed"
+
+         if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+
+            # Create a unique name file
+            change_filename = request.form["recipe_name"] + "_" + request.form["cuisine"] + "_" + filename
+
+            mongo.save_file(change_filename, file)
+            
+            if not recipe_img == "empty":       
+               fs_file = mongo.db.fs.files
+               fs_chunks = mongo.db.fs.chunks
+               fs_file_id = fs_file.find_one({"filename": recipe_img})
+
+
+               # Remove img from DB fs.file
+               fs_file.remove(
+                  {"filename": recipe_img}
+               )
+
+               # Remove img from DB fs.chunks
+               fs_chunks.remove(
+                  {"files_id": ObjectId(fs_file_id["_id"])}
+               )
+            
+            user.update(
+            {
+               "name": username,
+               "recipe_cards.recipe_name": recipe_name
+            },
+            {
+               "$set": {
+                  "recipe_cards.$.img": change_filename,
+                  "recipe_cards.$.recipe_name": request.form["recipe_name"],
+                  "recipe_cards.$.cuisine": request.form["cuisine"],
+                  "recipe_cards.$.recipe": request.form["recipe"]
+               }
+            })
+
+      else:
+         user.update(
+            {
+               "name": username,
+               "recipe_cards.recipe_name": recipe_name
+            },
+            {
+               "$set": {
+                  #"recipe_cards.$.img": request.form["upload_picture"],
+                  "recipe_cards.$.recipe_name": request.form["recipe_name"],
+                  "recipe_cards.$.cuisine": request.form["cuisine"],
+                  "recipe_cards.$.recipe": request.form["recipe"]
+               }
             }
-         }
-      )
+         )
 
       return redirect(url_for("main_page", username=session["username"]))
 
