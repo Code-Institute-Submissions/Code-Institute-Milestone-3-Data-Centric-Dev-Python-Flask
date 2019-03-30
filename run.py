@@ -214,7 +214,6 @@ def update_cookcard(username, recipe_name, recipe_img):
             },
             {
                "$set": {
-                  #"recipe_cards.$.img": request.form["upload_picture"],
                   "recipe_cards.$.recipe_name": request.form["recipe_name"],
                   "recipe_cards.$.cuisine": request.form["cuisine"],
                   "recipe_cards.$.recipe": request.form["recipe"]
