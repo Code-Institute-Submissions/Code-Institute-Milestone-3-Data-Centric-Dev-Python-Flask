@@ -79,13 +79,79 @@ def login():
    return render_template("login.html")
 
 
-@app.route("/main_page/<username>")
+@app.route("/main_page/<username>", methods=['GET', 'POST'])
 def main_page(username):
    users = mongo.db.users
    login_user = users.find_one({"name" : username})
-
+   
+   if request.method == 'POST':
+      sort_by = request.form["sort"]
+      
+      if sort_by == "name":
+         # Sorting by name of food
+         users.update(
+            { "name": username},
+            {
+               "$push": {
+                  "recipe_cards": {
+                     "$each": [],
+                     "$sort": { "recipe_name": 1 }
+                  }
+               }
+            }
+         )
+      else:
+         # Sorting by cuisine
+         users.update(
+            { "name": username},
+            {
+               "$push": {
+                  "recipe_cards": {
+                     "$each": [],
+                     "$sort": { "cuisine": 1 }
+                  }
+               }
+            }
+         )
+      
    return render_template("main_page.html", user=login_user)
 
+# Sorting cards accordint to name or cusiene
+@app.route("/main_page_query/<username>", methods=['GET', 'POST'])
+def main_page_query(username):
+   users = mongo.db.users
+   
+   if request.method == 'POST':
+      sort_by = request.form["sort"]
+      
+      if sort_by == "name":
+         # Sorting by name of food
+         users.update(
+            { "name": username},
+            {
+               "$push": {
+                  "recipe_cards": {
+                     "$each": [],
+                     "$sort": { "recipe_name": 1 }
+                  }
+               }
+            }
+         )
+      else:
+         # Sorting by cuisine
+         users.update(
+            { "name": username},
+            {
+               "$push": {
+                  "recipe_cards": {
+                     "$each": [],
+                     "$sort": { "cuisine": 1 }
+                  }
+               }
+            }
+         )
+      
+   return redirect(url_for("main_page", username=session["username"]))
 
 @app.route("/main_page/<username>/add_cookcard", methods=['GET', 'POST'])
 def add_page(username):

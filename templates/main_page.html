@@ -12,13 +12,14 @@
 <div class="container-select">
    <div class="row display-flex">
       <div class="col s2 margin--auto">
-         <form action="" method="POST">
+         <form action="{{ url_for('main_page_query', username=session['username']) }}" method="POST">
             <label for="pet-select">Sort by:</label>
-            <select style="display: inline-block;" id="pet-select">
+            <select style="display: inline-block;" id="pet-select" name="sort">
                <option value="" disabled selected>sort</option>
                <option value="name">Name</option>
                <option value="cuisine">Cuisine</option>
             </select>
+            <button>Submit</button>
          </form>
       </div>
    </div>
