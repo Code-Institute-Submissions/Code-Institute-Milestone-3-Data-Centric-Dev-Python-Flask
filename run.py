@@ -294,12 +294,24 @@ def remove_cookcard(username, recipe_name, img_name):
 
       return redirect(url_for("main_page", username=session["username"]))
 
-@app.route("/main_page/<username>/add_cooked/<cooked>", methods=['GET', 'POST'])
-def add_cooked(username, cooked): 
+@app.route("/main_page/<username>/add_cooked/<cooked>/<recipe_name>", methods=['GET', 'POST'])
+def add_cooked(username, cooked, recipe_name): 
    if request.method == "POST":
       user = mongo.db.users
+      cooked_incremented = int(cooked) + 1
       print("------------PRINT-------------")
-      print(cooked)
+      print(cooked_incremented)
+
+      user.update(
+         {
+            "name": username,
+            "recipe_cards.recipe_name": recipe_name
+         },
+         {
+            "$set": {
+               "recipe_cards.$.cooked": cooked_incremented
+            }
+         })
 
    return redirect(url_for("main_page", username=session["username"]))
 
