@@ -83,5 +83,10 @@
   margin-left: 8px;
   font-size: 18px;
 }
+.container-cards .hearts {
+  color: #fc5975;
+  margin-top: 20px;
+  text-align: center;
+}
 
 /*# sourceMappingURL=main.css.map */

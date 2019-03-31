@@ -30,7 +30,7 @@
 <!-- Cards container -->
 <div class="container container-cards">
    <div class="row">
-      
+
       <div class="col s4">
          <a href="{{ url_for('add_page', username=session['username']) }}">
             <div class="card">
@@ -60,40 +60,44 @@
                <button class="right activator waves-effect waves-light btn-small">Recipe</button>
                <p>{{ recipe_card.cuisine }}</p>
 
-               {% if recipe_card.cooked | int < 5 %}
-               <span></span>
-               {% elif recipe_card.cooked | int > 4 and recipe_card.cooked | int < 10 %}
-               <span><i class="material-icons">favorite</i></span>
-               {% elif recipe_card.cooked | int > 9 and recipe_card.cooked | int < 15 %}
-               {% for favorite in range(2) %}
-               <span><i class="material-icons">favorite</i></span>
-               {% endfor %}
-               {% elif recipe_card.cooked | int > 14 and recipe_card.cooked | int < 20 %}
-               {% for favorite in range(3) %}
-               <span><i class="material-icons">favorite</i></span>
-               {% endfor %}
-               {% elif recipe_card.cooked | int > 19 and recipe_card.cooked | int < 25 %}
-               {% for favorite in range(4) %}
-               <span><i class="material-icons">favorite</i></span>
-               {% endfor %}
-               {% elif recipe_card.cooked | int > 24 and recipe_card.cooked | int < 30 %}
-               {% for favorite in range(5) %}
-               <span><i class="material-icons">favorite</i></span>
-               {% endfor %}
-               {% elif recipe_card.cooked | int > 29 and recipe_card.cooked | int < 35 %}
-               {% for favorite in range(6) %}
-               <span><i class="material-icons">favorite</i></span>
-               {% endfor %}
-               {% else %}
+               <div class="hearts">
+                  {% if recipe_card.cooked | int < 5 %}
+                  <span></span>
+                  {% elif recipe_card.cooked | int > 4 and recipe_card.cooked | int < 10 %}
+                  <span><i class="material-icons">favorite</i></span>
+                  {% elif recipe_card.cooked | int > 9 and recipe_card.cooked | int < 15 %}
+                  {% for favorite in range(2) %}
+                  <span><i class="material-icons">favorite</i></span>
+                  {% endfor %}
+                  {% elif recipe_card.cooked | int > 14 and recipe_card.cooked | int < 20 %}
+                  {% for favorite in range(3) %}
+                  <span><i class="material-icons">favorite</i></span>
+                  {% endfor %}
+                  {% elif recipe_card.cooked | int > 19 and recipe_card.cooked | int < 25 %}
+                  {% for favorite in range(4) %}
+                  <span><i class="material-icons">favorite</i></span>
+                  {% endfor %}
+                  {% elif recipe_card.cooked | int > 24 and recipe_card.cooked | int < 30 %}
+                  {% for favorite in range(5) %}
+                  <span><i class="material-icons">favorite</i></span>
+                  {% endfor %}
+                  {% elif recipe_card.cooked | int > 29 and recipe_card.cooked | int < 35 %}
+                  {% for favorite in range(6) %}
+                  <span><i class="material-icons">favorite</i></span>
+                  {% endfor %}
+                  {% else %}
                   <span>Very favorite meal for you!</span>
-               {% endif %}
+                  {% endif %}
+               </div>
+               
                <div class="card-action">
                   <div class="left">
                      <form
                         action="{{ url_for('add_cooked', username=session['username'], cooked=recipe_card.cooked, recipe_name=recipe_card.recipe_name) }}"
                         method="POST" class="icon--inline-block">
                         <button class="btn-floating waves-effect waves-light green"><i
-                              class="material-icons">favorite_border</i></button><span class="cooked-number">{{ recipe_card.cooked }}</span>
+                              class="material-icons">favorite_border</i></button><span
+                           class="cooked-number">{{ recipe_card.cooked }}</span>
                      </form>
                   </div>
                   <div class="right">
