@@ -237,7 +237,8 @@ def update_cookcard(username, recipe_name, recipe_img):
                   "recipe_cards.$.img": change_filename,
                   "recipe_cards.$.recipe_name": request.form["recipe_name"],
                   "recipe_cards.$.cuisine": request.form["cuisine"],
-                  "recipe_cards.$.recipe": request.form["recipe"]
+                  "recipe_cards.$.recipe": request.form["recipe"],
+                  "recipe_cards.$.cooked": request.form["cooked"]
                }
             })
 
@@ -251,7 +252,8 @@ def update_cookcard(username, recipe_name, recipe_img):
                "$set": {
                   "recipe_cards.$.recipe_name": request.form["recipe_name"],
                   "recipe_cards.$.cuisine": request.form["cuisine"],
-                  "recipe_cards.$.recipe": request.form["recipe"]
+                  "recipe_cards.$.recipe": request.form["recipe"],
+                  "recipe_cards.$.cooked": request.form["cooked"]
                }
             }
          )
