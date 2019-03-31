@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, session, request, redirect
+from flask import Flask, render_template, url_for, session, request, redirect, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
@@ -50,8 +50,8 @@ def landing_page():
                ]
             })
          return redirect(url_for("login"))
-      
-      return "The username already exist!"
+
+      return jsonify({"error": request.form["username"] + " already exists!"})
 
    return render_template("landing.html")
 

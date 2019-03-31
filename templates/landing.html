@@ -8,7 +8,8 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
          <li><a href="{{ url_for('login') }}">Log In |</a></li>
-         <a href="#sign-up" class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign Up</a>
+         <a href="#sign-up" class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign
+            Up</a>
       </ul>
    </div>
 </nav>
@@ -37,16 +38,17 @@
 <section class="sing-up-container" id="sign-up">
    <div class="row container sign-up--padding-top">
       <h3 class="center-align">Create your account</h3>
-      <form method="POST" action="{{ url_for('landing_page') }}" class="col s12">
+      <form id="singUpForm" class="col s12">
          <div class="row">
             <div class="input-field col s12">
-               <input id="username" name="username" type="text" class="validate">
+               <input id="username" name="username" type="text" class="validate" required>
                <label for="username">Username</label>
             </div>
+            <p id="errorAlert" style="display: none; color:tomato;"></p>
          </div>
          <div class="row">
             <div class="input-field col s12">
-               <input id="password" name="password" type="password" class="validate">
+               <input id="password" name="password" type="password" class="validate" required>
                <label for="password">Password</label>
             </div>
          </div>
@@ -55,5 +57,4 @@
    </div>
 </section>
 <!-- /Sing Up section -->
-
 {% endblock %}
