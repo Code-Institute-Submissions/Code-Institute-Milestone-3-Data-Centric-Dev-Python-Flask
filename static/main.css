@@ -45,6 +45,11 @@
 .login-container .login--padding-top h3 {
   margin-top: 0;
 }
+.login-container .flash {
+  color: #ba3131;
+  background: #f7f78c;
+  font-size: 18px;
+}
 
 .text-align--right {
   text-align: right;

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, session, request, redirect, jsonify
+from flask import Flask, render_template, url_for, session, request, redirect, jsonify, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
@@ -34,7 +34,7 @@ def landing_page():
 
       if existing_user is None:
          hashpass = bcrypt.generate_password_hash(request.form["password"]).decode("utf-8")
-
+         success_alert = "You were signed up successfully! Please login now!"
          # Insert default data to mongoDB Atlas
          users.insert({
             "name" : request.form["username"],
@@ -49,14 +49,14 @@ def landing_page():
                   }
                ]
             })
-         return redirect(url_for("login"))
+         return redirect(url_for("login", success="success_alert"))
 
       return jsonify({"error": request.form["username"] + " already exists!"})
 
    return render_template("landing.html")
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route("/login/", methods=['GET', 'POST'])
 def login():
    if request.method == 'POST':
       users = mongo.db.users
@@ -73,8 +73,7 @@ def login():
             if "username" in session:
                return redirect(url_for("main_page", username=session["username"]))
 
-         return "Invalid username/password combination"
-      return "Invalid username"
+      flash("Invalid username/password combination") 
    
    return render_template("login.html")
 
