@@ -188,7 +188,7 @@ def edit_page(username, recipe_name):
       {"recipe_cards": {"$elemMatch": {"recipe_name": recipe_name}} }
    )
 
-   return render_template("edit_cookcard.html", cookcard=cookcard["recipe_cards"][0])
+   return render_template("edit_cookcard.html", cookcard=cookcard["recipe_cards"][0] )
 
 @app.route("/main_page/<username>/update_foodcard/<recipe_name>/<recipe_img>/", methods=['GET', 'POST'])
 def update_cookcard(username, recipe_name, recipe_img):
