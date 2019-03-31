@@ -3,7 +3,7 @@
 
 <!-- Logout button -->
 <div class="arrow-back text-align--right"><a href="{{ url_for('landing_page') }}"
-      class="waves-effect waves-light btn"><i class="material-icons">skip_next</i></a></div>
+      class="waves-effect waves-light btn"><span class="logout-icon">Log Out</span><i class="material-icons">backspace</i></a></div>
 <!-- /Logout button -->
 
 <h2 class="center-align">Welcome to your cookbook, {{ user.name }}!</h2>
@@ -12,14 +12,14 @@
 <div class="container-select">
    <div class="row display-flex">
       <div class="col s2 margin--auto">
-         <form action="{{ url_for('main_page_query', username=session['username']) }}" method="POST">
+         <form action="{{ url_for('main_page_query', username=session['username']) }}" method="POST" class="select-form">
             <label for="pet-select">Sort by:</label>
             <select style="display: inline-block;" id="pet-select" name="sort">
-               <option value="" disabled selected>sort</option>
+               <option value="sort" disabled selected>sort</option>
                <option value="name">Name</option>
                <option value="cuisine">Cuisine</option>
             </select>
-            <button>Submit</button>
+            <button class="waves-effect waves-light btn">Sort</button>
          </form>
       </div>
    </div>

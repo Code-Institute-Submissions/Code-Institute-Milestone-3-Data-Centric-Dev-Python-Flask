@@ -55,11 +55,22 @@
   text-align: right;
 }
 
+.logout-icon {
+  margin-right: 8px;
+  position: relative;
+  top: -4px;
+}
+
 .container-select .display-flex {
   display: flex;
 }
 .container-select .margin--auto {
   margin: auto;
+}
+.container-select .select-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .container-cards .icon--inline-block {

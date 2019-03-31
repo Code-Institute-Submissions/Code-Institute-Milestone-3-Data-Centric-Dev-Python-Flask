@@ -72,6 +72,12 @@
    text-align: right;
 }
 
+.logout-icon {
+   margin-right: 8px;
+   position: relative;
+   top: -4px;
+}
+
 .container-select {
    .display-flex {
       display: flex;
@@ -79,6 +85,12 @@
 
    .margin--auto {
       margin: auto;
+   }
+   
+   .select-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
    }
 }
 

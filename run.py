@@ -34,7 +34,6 @@ def landing_page():
 
       if existing_user is None:
          hashpass = bcrypt.generate_password_hash(request.form["password"]).decode("utf-8")
-         success_alert = "You were signed up successfully! Please login now!"
          # Insert default data to mongoDB Atlas
          users.insert({
             "name" : request.form["username"],
@@ -49,7 +48,8 @@ def landing_page():
                   }
                ]
             })
-         return redirect(url_for("login", success="success_alert"))
+
+         return redirect(url_for("login"))
 
       return jsonify({"error": request.form["username"] + " already exists!"})
 
