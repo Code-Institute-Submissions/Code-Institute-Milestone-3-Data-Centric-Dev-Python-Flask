@@ -3,7 +3,8 @@
 
 <!-- Logout button -->
 <div class="arrow-back text-align--right"><a href="{{ url_for('landing_page') }}"
-      class="waves-effect waves-light btn"><span class="logout-icon">Log Out</span><i class="material-icons">backspace</i></a></div>
+      class="waves-effect waves-light btn"><span class="logout-icon">Log Out</span><i
+         class="material-icons">backspace</i></a></div>
 <!-- /Logout button -->
 
 <h2 class="center-align">Welcome to your cookbook, {{ user.name }}!</h2>
@@ -12,11 +13,11 @@
 <div class="container-select">
    <div class="row display-flex">
       <div class="col s2 margin--auto">
-         <form action="{{ url_for('main_page_query', username=session['username']) }}" method="POST" class="select-form">
+         <form action="{{ url_for('main_page_query', username=session['username']) }}" method="POST"
+            class="select-form">
             <label for="pet-select">Sort by:</label>
             <select style="display: inline-block;" id="pet-select" name="sort">
-               <option value="sort" disabled selected>sort</option>
-               <option value="name">Name</option>
+               <option value="name" selected>Name</option>
                <option value="cuisine">Cuisine</option>
             </select>
             <button class="waves-effect waves-light btn">Sort</button>
@@ -34,17 +35,25 @@
          <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
                {% if recipe_card.img == "empty" %}
-               <img class="activator" src="https://shop.countdown.co.nz/Content/Recipes/diamond_spagbol_540x380_5.jpg" alt="default picture of meal">
+               <img class="activator" src="https://shop.countdown.co.nz/Content/Recipes/diamond_spagbol_540x380_5.jpg"
+                  alt="default picture of meal">
                {% else %}
                <img class="activator" src="{{ url_for('file', filename=recipe_card.img) }}" alt="picture of meal">
                {% endif %}
-               
+
             </div>
             <div class="card-content">
                <span class="card-title activator grey-text text-darken-4">{{ recipe_card.recipe_name }}<i
                      class="material-icons right">more_vert</i></span>
                <p>{{ recipe_card.cuisine }}</p>
                <div class="card-action">
+                  <div class="left">
+                     <form action="{{ url_for('add_cooked', username=session['username'], cooked=recipe_card.cooked) }}"
+                        method="POST" class="icon--inline-block">
+                        <button class="btn-floating waves-effect waves-light green"><i
+                              class="material-icons">favorite_border</i></button><span>{{ recipe_card.cooked }}</span>
+                     </form>
+                  </div>
                   <div class="right">
                      <p class="icon--inline-block"><a class="btn-floating waves-effect waves-light yellow"
                            href="{{ url_for('edit_page', username=session['username'], recipe_name=recipe_card.recipe_name) }}"><i

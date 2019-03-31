@@ -56,7 +56,7 @@ def landing_page():
    return render_template("landing.html")
 
 
-@app.route("/login/", methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def login():
    if request.method == 'POST':
       users = mongo.db.users
@@ -82,36 +82,6 @@ def login():
 def main_page(username):
    users = mongo.db.users
    login_user = users.find_one({"name" : username})
-   
-   if request.method == 'POST':
-      sort_by = request.form["sort"]
-      
-      if sort_by == "name":
-         # Sorting by name of food
-         users.update(
-            { "name": username},
-            {
-               "$push": {
-                  "recipe_cards": {
-                     "$each": [],
-                     "$sort": { "recipe_name": 1 }
-                  }
-               }
-            }
-         )
-      else:
-         # Sorting by cuisine
-         users.update(
-            { "name": username},
-            {
-               "$push": {
-                  "recipe_cards": {
-                     "$each": [],
-                     "$sort": { "cuisine": 1 }
-                  }
-               }
-            }
-         )
       
    return render_template("main_page.html", user=login_user)
 
@@ -293,8 +263,6 @@ def update_cookcard(username, recipe_name, recipe_img):
 def remove_cookcard(username, recipe_name, img_name): 
    if request.method == "POST":
       user = mongo.db.users
-      print("---------PRINT 111111 ---------")
-      print(img_name)
       
       # Remove selected foodcard from DB
       user.update(
@@ -326,6 +294,14 @@ def remove_cookcard(username, recipe_name, img_name):
 
       return redirect(url_for("main_page", username=session["username"]))
 
+@app.route("/main_page/<username>/add_cooked/<cooked>", methods=['GET', 'POST'])
+def add_cooked(username, cooked): 
+   if request.method == "POST":
+      user = mongo.db.users
+      print("------------PRINT-------------")
+      print(cooked)
+
+   return redirect(url_for("main_page", username=session["username"]))
 
 
 if __name__ == '__main__':
