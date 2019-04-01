@@ -1,3 +1,7 @@
+// Color for buttons #e76114
+
+
+
 // CALLOUT SECTION
 
 .callout-container {
@@ -99,11 +103,21 @@
 }
 
 .container-cards {
+   img {
+      height: 175px;
+   }
+
    .icon--inline-block {
       display: inline-block;
    }
-   img {
-      height: 175px;
+
+   .margin-right {
+      margin-right: 17px !important;
+   }
+
+   .fork {
+      height: 20.4px;
+      line-height: 20.4px !important;
    }
 
    .add-card {
@@ -119,6 +133,20 @@
       }
    }
 
+   .btn-heart {
+      background: #ffffff;
+
+      .heart{
+         color: #fc5975;
+         font-weight: bold;
+      }
+   }
+
+   .btn-floating-tool {
+      width: 35px !important;
+      height: 35px !important;
+   }
+
    .cooked-number {
       margin-left: 8px;
       font-size: 18px;
@@ -127,13 +155,27 @@
    .hearts {
       color: #fc5975;
       margin-top: 20px;
-      text-align: center;
    }
 
    .btn-small {
-      height: 20.4px;
+      background-color: #fff6a6;
+      border-radius: 10px;
+      color: black;
+      height: 25.4px;
       line-height: 20.4px;
       font-size: 11px;
+      margin-top: 5px;
+   }
+
+   .tool {
+      color: #e7c91a;
+      line-height: 35px !important;
+   }
+
+   .remove {
+      color: #af0101;
+      font-weight: bold;
+      line-height: 35px !important;
    }
 }
 

@@ -45,6 +45,9 @@
       <div class="col s12 m6 l4">
          <div class="card medium">
 
+            <div class="center-align"><span
+                  class="card-title activator grey-text text-darken-4">{{ recipe_card.recipe_name }}</span></div>
+
             <div class="card-image waves-effect waves-block waves-light">
                {% if recipe_card.img == "empty" %}
                <img class="activator" src="https://shop.countdown.co.nz/Content/Recipes/diamond_spagbol_540x380_5.jpg"
@@ -55,10 +58,10 @@
             </div>
 
             <div class="card-content">
-               <span class="card-title activator grey-text text-darken-4">{{ recipe_card.recipe_name }}<i
-                     class="material-icons right">restaurant_menu</i></span>
-               <button class="right activator waves-effect waves-light btn-small">Recipe</button>
-               <p>{{ recipe_card.cuisine }}</p>
+               <div class="card-title activator grey-text text-darken-4">
+                  <p class="icon--inline-block">{{ recipe_card.cuisine }}</p>
+                  <button class="right activator waves-effect waves-light btn-small">Recipe<i class="material-icons right fork">restaurant_menu</i></button>
+               </div>
 
                <div class="hearts">
                   {% if recipe_card.cooked | int < 5 %}
@@ -73,43 +76,31 @@
                   {% for favorite in range(3) %}
                   <span><i class="material-icons">favorite</i></span>
                   {% endfor %}
-                  {% elif recipe_card.cooked | int > 19 and recipe_card.cooked | int < 25 %}
-                  {% for favorite in range(4) %}
-                  <span><i class="material-icons">favorite</i></span>
-                  {% endfor %}
-                  {% elif recipe_card.cooked | int > 24 and recipe_card.cooked | int < 30 %}
-                  {% for favorite in range(5) %}
-                  <span><i class="material-icons">favorite</i></span>
-                  {% endfor %}
-                  {% elif recipe_card.cooked | int > 29 and recipe_card.cooked | int < 35 %}
-                  {% for favorite in range(6) %}
-                  <span><i class="material-icons">favorite</i></span>
-                  {% endfor %}
                   {% else %}
                   <span>Very favorite meal for you!</span>
                   {% endif %}
                </div>
-               
+
                <div class="card-action">
                   <div class="left">
                      <form id="heartsForm"
                         action="{{ url_for('add_cooked', username=session['username'], cooked=recipe_card.cooked, recipe_name=recipe_card.recipe_name) }}"
                         method="POST" class="icon--inline-block">
-                        <button class="btn-floating waves-effect waves-light green"><i
-                              class="material-icons">favorite_border</i></button><span
+                        <button class="btn-floating waves-effect waves-light btn-heart"><i
+                              class="material-icons heart">favorite_border</i></button><span
                            class="cooked-number">{{ recipe_card.cooked }}</span>
                      </form>
                   </div>
                   <div class="right">
-                     <p class="icon--inline-block"><a class="btn-floating waves-effect waves-light yellow"
+                     <p class="icon--inline-block margin-right"><a class="btn-floating btn-floating-tool waves-effect waves-light white"
                            href="{{ url_for('edit_page', username=session['username'], recipe_name=recipe_card.recipe_name) }}"><i
-                              class="material-icons">edit</i>Edit</a>
+                              class="material-icons tool">edit</i>Edit</a>
                      </p>
                      <form
                         action="{{ url_for('remove_cookcard', username=session['username'], recipe_name=recipe_card.recipe_name, img_name=recipe_card.img) }}"
                         method="POST" class="icon--inline-block">
-                        <button class="btn-floating waves-effect waves-light red"><i
-                              class="material-icons">remove</i>Remove</button>
+                        <button class="btn-floating btn-floating-tool waves-effect waves-light white"><i
+                              class="material-icons remove">remove</i>Remove</button>
                      </form>
                   </div>
                </div>

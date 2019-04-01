@@ -76,11 +76,18 @@
   margin-top: 10px;
 }
 
+.container-cards img {
+  height: 175px;
+}
 .container-cards .icon--inline-block {
   display: inline-block;
 }
-.container-cards img {
-  height: 175px;
+.container-cards .margin-right {
+  margin-right: 17px !important;
+}
+.container-cards .fork {
+  height: 20.4px;
+  line-height: 20.4px !important;
 }
 .container-cards .add-card {
   height: 400px;
@@ -92,6 +99,17 @@
 .container-cards .add-card .icon-plus {
   font-size: 185px;
 }
+.container-cards .btn-heart {
+  background: #ffffff;
+}
+.container-cards .btn-heart .heart {
+  color: #fc5975;
+  font-weight: bold;
+}
+.container-cards .btn-floating-tool {
+  width: 35px !important;
+  height: 35px !important;
+}
 .container-cards .cooked-number {
   margin-left: 8px;
   font-size: 18px;
@@ -99,12 +117,24 @@
 .container-cards .hearts {
   color: #fc5975;
   margin-top: 20px;
-  text-align: center;
 }
 .container-cards .btn-small {
-  height: 20.4px;
+  background-color: #fff6a6;
+  border-radius: 10px;
+  color: black;
+  height: 25.4px;
   line-height: 20.4px;
   font-size: 11px;
+  margin-top: 5px;
+}
+.container-cards .tool {
+  color: #e7c91a;
+  line-height: 35px !important;
+}
+.container-cards .remove {
+  color: #af0101;
+  font-weight: bold;
+  line-height: 35px !important;
 }
 
 /*# sourceMappingURL=main.css.map */
