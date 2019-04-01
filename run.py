@@ -85,7 +85,7 @@ def main_page(username):
       
    return render_template("main_page.html", user=login_user)
 
-# Sorting cards accordint to name or cusiene
+# Sorting cards based on name or cusiene
 @app.route("/main_page_query/<username>", methods=['GET', 'POST'])
 def main_page_query(username):
    users = mongo.db.users
@@ -301,8 +301,6 @@ def add_cooked(username, cooked, recipe_name):
    if request.method == "POST":
       user = mongo.db.users
       cooked_incremented = int(cooked) + 1
-      print("------------PRINT-------------")
-      print(cooked_incremented)
 
       user.update(
          {

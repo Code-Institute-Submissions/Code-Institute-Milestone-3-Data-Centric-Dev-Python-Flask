@@ -72,6 +72,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.container-select .button-margin--top {
+  margin-top: 10px;
+}
 
 .container-cards .icon--inline-block {
   display: inline-block;
@@ -87,6 +90,11 @@
   color: #fc5975;
   margin-top: 20px;
   text-align: center;
+}
+.container-cards .btn-small {
+  height: 20.4px;
+  line-height: 20.4px;
+  font-size: 11px;
 }
 
 /*# sourceMappingURL=main.css.map */

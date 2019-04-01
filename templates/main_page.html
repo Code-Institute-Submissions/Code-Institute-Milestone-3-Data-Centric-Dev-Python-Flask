@@ -20,7 +20,7 @@
                <option value="name" selected>Name</option>
                <option value="cuisine">Cuisine</option>
             </select>
-            <button class="waves-effect waves-light btn">Sort</button>
+            <button class="waves-effect waves-light btn button-margin--top">Sort</button>
          </form>
       </div>
    </div>
@@ -92,7 +92,7 @@
                
                <div class="card-action">
                   <div class="left">
-                     <form
+                     <form id="heartsForm"
                         action="{{ url_for('add_cooked', username=session['username'], cooked=recipe_card.cooked, recipe_name=recipe_card.recipe_name) }}"
                         method="POST" class="icon--inline-block">
                         <button class="btn-floating waves-effect waves-light green"><i

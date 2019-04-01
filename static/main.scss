@@ -92,6 +92,10 @@
       flex-wrap: wrap;
       justify-content: center;
    }
+
+   .button-margin--top {
+      margin-top: 10px;
+   }
 }
 
 .container-cards {
@@ -111,6 +115,12 @@
       color: #fc5975;
       margin-top: 20px;
       text-align: center;
+   }
+
+   .btn-small {
+      height: 20.4px;
+      line-height: 20.4px;
+      font-size: 11px;
    }
 }
 
