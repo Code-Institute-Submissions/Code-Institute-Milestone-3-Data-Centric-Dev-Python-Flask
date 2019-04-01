@@ -79,8 +79,18 @@
 .container-cards .icon--inline-block {
   display: inline-block;
 }
-.container-cards .card .card-image img {
+.container-cards img {
   height: 175px;
+}
+.container-cards .add-card {
+  height: 400px;
+  border: 2px solid #039be5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-cards .add-card .icon-plus {
+  font-size: 185px;
 }
 .container-cards .cooked-number {
   margin-left: 8px;

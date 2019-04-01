@@ -102,8 +102,21 @@
    .icon--inline-block {
       display: inline-block;
    }
-   .card .card-image img {
+   img {
       height: 175px;
+   }
+
+   .add-card {
+      height: 400px;
+      border: 2px solid #039be5;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon-plus {
+         font-size: 185px;
+      }
    }
 
    .cooked-number {
