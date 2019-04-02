@@ -11,12 +11,10 @@ $("#singUpForm").on("submit", function(event) {
    })
    .done(function(data) {
       if (data.error) {
-         console.log("Error")
          $("#errorAlert").text(data.error).show();
          $("#password").val("");
       }
       else {
-         console.log("Noooo Error")
          $("#errorAlert").text(data.error).hide();
          window.location.href = "/login";
       }
