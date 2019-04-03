@@ -18,7 +18,7 @@ $(".heartsForm").on("submit", function(event) {
       url: "/main_page/cooked"
    })
    .done(function(data) {
-      $("#cookedNumber"+recipe_id).text(data.cooked)
+      $("#name"+username).html(data);
    });
 
 event.preventDefault();

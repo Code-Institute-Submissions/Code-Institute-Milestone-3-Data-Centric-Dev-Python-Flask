@@ -309,7 +309,6 @@ def add_cooked():
       recipe_name = request.form["recipe_name"]
       cooked = request.form["cooked"]
 
-
       cooked_incremented = int(cooked) + 1
 
       user.update(
@@ -323,7 +322,8 @@ def add_cooked():
             }
          })
 
-   return jsonify({"cooked": cooked_incremented})
+   #return jsonify({"cooked": cooked_incremented})
+   return redirect(url_for("main_page", username=username))
 
 
 if __name__ == '__main__':
