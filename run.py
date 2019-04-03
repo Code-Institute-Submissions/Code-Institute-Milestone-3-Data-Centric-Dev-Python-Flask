@@ -5,6 +5,7 @@ from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
+from random import randint
 
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -40,6 +41,7 @@ def landing_page():
             "password" : hashpass,
             "recipe_cards" : [
                   {
+                     "recipe_id": randint(1,1000),
                      "recipe_name" : "Spaghetti Bolognese",
                      "cuisine": "Italian",
                      "recipe" : "Spaghetty with tomato's sauce",
@@ -147,6 +149,7 @@ def add_page(username):
             users.update( {"name": username},
             {
                "$push": {"recipe_cards": {
+                  "recipe_id": randint(1,1000),
                   "recipe_name" : request.form["recipe_name"],
                   "cuisine": request.form["cuisine"],
                   "recipe" : request.form["recipe"],
@@ -159,6 +162,7 @@ def add_page(username):
          users.update( {"name": username},
                {
                   "$push": {"recipe_cards": {
+                     "recipe_id": randint(1,1000),
                      "recipe_name" : request.form["recipe_name"],
                      "cuisine": request.form["cuisine"],
                      "recipe" : request.form["recipe"],
@@ -296,10 +300,16 @@ def remove_cookcard(username, recipe_name, img_name):
 
       return redirect(url_for("main_page", username=session["username"]))
 
-@app.route("/main_page/<username>/add_cooked/<cooked>/<recipe_name>", methods=['GET', 'POST'])
-def add_cooked(username, cooked, recipe_name): 
+@app.route("/main_page/cooked", methods=['GET', 'POST'])
+def add_cooked(): 
    if request.method == "POST":
       user = mongo.db.users
+
+      username = request.form["username"]
+      recipe_name = request.form["recipe_name"]
+      cooked = request.form["cooked"]
+
+
       cooked_incremented = int(cooked) + 1
 
       user.update(
@@ -313,7 +323,7 @@ def add_cooked(username, cooked, recipe_name):
             }
          })
 
-   return redirect(url_for("main_page", username=session["username"]))
+   return jsonify({"cooked": cooked_incremented})
 
 
 if __name__ == '__main__':

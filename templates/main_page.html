@@ -83,12 +83,23 @@
 
                <div class="card-action">
                   <div class="left">
-                     <form id="heartsForm"
+                     <form class="heartsForm"
                         action="{{ url_for('add_cooked', username=session['username'], cooked=recipe_card.cooked, recipe_name=recipe_card.recipe_name) }}"
-                        method="POST" class="icon--inline-block">
-                        <button class="btn-floating waves-effect waves-light btn-heart"><i
-                              class="material-icons heart">favorite_border</i></button><span
-                           class="cooked-number">{{ recipe_card.cooked }}</span>
+                        method="POST" class="icon--inline-block"
+                        recipe_id="{{ recipe_card.recipe_id }}"
+                        >
+                        
+                        <!-- Hidden inputs for passing data AJAX -->
+                        <input type="hidden" id="usernameInput{{ recipe_card.recipe_id }}" name="username" value="{{ session['username'] }}">
+                        <input type="hidden" id="recipe_nameInput{{ recipe_card.recipe_id }}" name="recipe_name" value="{{ recipe_card.recipe_name }}">
+                        <!-- / Hidden inputs for passing data AJAX -->
+
+                        <button class="btn-floating waves-effect waves-light btn-heart" >
+                           <i class="material-icons heart">favorite_border</i>
+                        </button>
+                        <span
+                           class="cooked-number cookedInput{{ recipe_card.recipe_id }}" id="cookedNumber{{recipe_card.recipe_id}}">{{ recipe_card.cooked }}
+                        </span>
                      </form>
                   </div>
                   <div class="right">
