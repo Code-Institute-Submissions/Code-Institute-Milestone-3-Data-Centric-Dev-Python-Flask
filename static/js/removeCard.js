@@ -1,7 +1,6 @@
 // Checking whether username exists
 
-$(".removeCard").on("submit", function(event) {
-
+$(".removeCardBtn").on("click", function(event) {
    let recipe_id = $(this).attr("recipe_id");
 
    let username = $("#usernameInput"+recipe_id).val();
