@@ -1,6 +1,6 @@
 // Checking whether username exists
 
-$(".heartsForm").on("submit", function(event) {
+$(".btn-heart").on("click", function(event) {
 
    let recipe_id = $(this).attr("recipe_id");
 
