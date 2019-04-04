@@ -6,8 +6,9 @@
    <div class="nav-wrapper">
       <a href="#!" class="brand-logo">Cookbook Logo</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="{{ url_for('login') }}" class="login">Login</a>
       <ul class="right hide-on-med-and-down">
-         <li><a href="{{ url_for('login') }}">Log In |</a></li>
+         <li><a href="{{ url_for('login') }}">Login</a></li>
          <a href="#sign-up" class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign
             Up</a>
       </ul>
@@ -18,7 +19,7 @@
 <!-- Hamburger menu -->
 <ul class="sidenav slide-out" id="mobile-demo">
    <li><a class="sidenav-close" href="#!">Close Menu</a></li>
-   <li><a href="#">Sing In</a></li>
+   <li><a href="{{ url_for('login') }}">Login</a></li>
    <li><a href="#sign-up" class="sidenav-close">Sing Up</a></li>
 </ul>
 <!-- /Hamburger menu -->
