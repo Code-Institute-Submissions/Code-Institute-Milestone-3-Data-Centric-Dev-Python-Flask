@@ -265,10 +265,14 @@ def update_cookcard(username, recipe_name, recipe_img):
       return redirect(url_for("main_page", username=session["username"]))
 
 
-@app.route("/main_page/<username>/remove_foodcard/<recipe_name>/<img_name>", methods=['GET', 'POST'])
-def remove_cookcard(username, recipe_name, img_name): 
+@app.route("/main_page/remove_foodcard", methods=['GET', 'POST'])
+def remove_cookcard(): 
    if request.method == "POST":
       user = mongo.db.users
+
+      username = request.form["username"]
+      recipe_name = request.form["recipe_name"]
+      img_name = request.form["img_name"]
       
       # Remove selected foodcard from DB
       user.update(
@@ -298,7 +302,7 @@ def remove_cookcard(username, recipe_name, img_name):
             {"files_id": ObjectId(fs_file_id["_id"])}
          )
 
-      return redirect(url_for("main_page", username=session["username"]))
+      return redirect(url_for("main_page", username=username))
 
 @app.route("/main_page/cooked", methods=['GET', 'POST'])
 def add_cooked(): 
