@@ -164,8 +164,8 @@ def add_page(username):
             {
                "$push": {"recipe_cards": {
                   "recipe_id": randint(1,100000),
-                  "recipe_name" : request.form["recipe_name"],
-                  "cuisine": request.form["cuisine"],
+                  "recipe_name" : request.form["recipe_name"].capitalize(),
+                  "cuisine": request.form["cuisine"].capitalize(),
                   "recipe" : request.form["recipe"],
                   "cooked" : int(0),
                   "img" : change_filename
@@ -177,8 +177,8 @@ def add_page(username):
                {
                   "$push": {"recipe_cards": {
                      "recipe_id": randint(1,1000),
-                     "recipe_name" : request.form["recipe_name"],
-                     "cuisine": request.form["cuisine"],
+                     "recipe_name" : request.form["recipe_name"].capitalize(),
+                     "cuisine": request.form["cuisine"].capitalize(),
                      "recipe" : request.form["recipe"],
                      "cooked" : 0,
                      "img" : "empty"
@@ -253,8 +253,8 @@ def update_cookcard(username, recipe_name, recipe_img):
             {
                "$set": {
                   "recipe_cards.$.img": change_filename,
-                  "recipe_cards.$.recipe_name": request.form["recipe_name"],
-                  "recipe_cards.$.cuisine": request.form["cuisine"],
+                  "recipe_cards.$.recipe_name": request.form["recipe_name"].capitalize(),
+                  "recipe_cards.$.cuisine": request.form["cuisine"].capitalize(),
                   "recipe_cards.$.recipe": request.form["recipe"],
                   "recipe_cards.$.cooked": request.form["cooked"]
                }
@@ -268,8 +268,8 @@ def update_cookcard(username, recipe_name, recipe_img):
             },
             {
                "$set": {
-                  "recipe_cards.$.recipe_name": request.form["recipe_name"],
-                  "recipe_cards.$.cuisine": request.form["cuisine"],
+                  "recipe_cards.$.recipe_name": request.form["recipe_name"].capitalize(),
+                  "recipe_cards.$.cuisine": request.form["cuisine"].capitalize(),
                   "recipe_cards.$.recipe": request.form["recipe"],
                   "recipe_cards.$.cooked": request.form["cooked"]
                }
