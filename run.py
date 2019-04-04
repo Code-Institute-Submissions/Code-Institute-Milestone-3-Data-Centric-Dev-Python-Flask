@@ -41,11 +41,11 @@ def landing_page():
             "password" : hashpass,
             "recipe_cards" : [
                   {
-                     "recipe_id": randint(1,1000),
+                     "recipe_id": randint(1,100000),
                      "recipe_name" : "Spaghetti Bolognese",
                      "cuisine": "Italian",
                      "recipe" : "Spaghetty with tomato's sauce",
-                     "cooked" : 0,
+                     "cooked" : int(0),
                      "img" : "empty"
                   }
                ]
@@ -122,6 +122,7 @@ def main_page_query(username):
             }
          )
       else:
+         print("THis woas execute")
          # Sorting by cooked number
          users.update(
             { "name": username},
@@ -129,7 +130,7 @@ def main_page_query(username):
                "$push": {
                   "recipe_cards": {
                      "$each": [],
-                     "$sort": { "cooked": 1 }
+                     "$sort": { "cooked": -1 }
                   }
                }
             }
@@ -162,11 +163,11 @@ def add_page(username):
             users.update( {"name": username},
             {
                "$push": {"recipe_cards": {
-                  "recipe_id": randint(1,1000),
+                  "recipe_id": randint(1,100000),
                   "recipe_name" : request.form["recipe_name"],
                   "cuisine": request.form["cuisine"],
                   "recipe" : request.form["recipe"],
-                  "cooked" : 0,
+                  "cooked" : int(0),
                   "img" : change_filename
                   }
                }
