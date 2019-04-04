@@ -108,7 +108,7 @@ def main_page_query(username):
                }
             }
          )
-      else:
+      elif sort_by == "cuisine":
          # Sorting by cuisine
          users.update(
             { "name": username},
@@ -117,6 +117,19 @@ def main_page_query(username):
                   "recipe_cards": {
                      "$each": [],
                      "$sort": { "cuisine": 1 }
+                  }
+               }
+            }
+         )
+      else:
+         # Sorting by cooked number
+         users.update(
+            { "name": username},
+            {
+               "$push": {
+                  "recipe_cards": {
+                     "$each": [],
+                     "$sort": { "cooked": 1 }
                   }
                }
             }
