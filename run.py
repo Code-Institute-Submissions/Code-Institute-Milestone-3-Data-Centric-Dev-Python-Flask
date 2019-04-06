@@ -364,11 +364,10 @@ def add_cooked():
    if request.method == "POST":
       user = mongo.db.users
 
-      #TODO: when get hearts upvote in other than 1 page (2, 3...) than we have to pass page number otherwise the first page will be loaded!
-
       username = request.form["username"]
       recipe_name = request.form["recipe_name"]
       cooked = request.form["cooked"]
+      current_page = int(request.form["current_page"])
 
       cooked_incremented = int(cooked) + 1
 
@@ -383,8 +382,59 @@ def add_cooked():
             }
          })
 
+
+
+
+
+      # Get length of recipecards array in order to create pagination
+      login_user_len = user.find_one({"name" : username})
+
+      # Get lenght of recipecards
+      length_pagination = len(login_user_len["recipe_cards"])
+
+      # Number of paginatoion needed
+      pages = math.ceil(length_pagination / 5)
+
+      offset = 0
+      clicked_page = 0
+         
+      if request.method == "POST":
+         number = current_page
+         print("++++++++++++++++++PRINT clicked number ++++++++++++++")
+         print(number)
+
+         clicked_page = number -1
+
+         if number == 1:
+            offset = number - 1
+            
+         elif number == 2:
+            offset = 5
+
+         elif number > 2:
+            offset = 5 * (number - 1)
+
+      print("+++++++++++++PRINT OFFSET+++++++++++++++++")
+      print(offset)
+      limit = 5
+      print("limit is ")
+      print(limit)
+      print(clicked_page)
+
+      # Show only 5 recipe cards on the page
+      showed_cards = user.find_one(
+         {"name" : username},
+            
+         {"recipe_cards": {"$slice": [offset, limit]}}
+      )
+
+      return render_template("main_page.html", user=showed_cards, pages=pages, clicked_page=clicked_page)
+
+
+
+
    #return jsonify({"cooked": cooked_incremented})
-   return redirect(url_for("main_page", username=username))
+   #return redirect(url_for("main_page", username=username))
 
 
 if __name__ == '__main__':
