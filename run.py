@@ -1,4 +1,4 @@
-import os
+import os, math
 from flask import Flask, render_template, url_for, session, request, redirect, jsonify, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -83,9 +83,50 @@ def login():
 @app.route("/main_page/<username>", methods=['GET', 'POST'])
 def main_page(username):
    users = mongo.db.users
-   login_user = users.find_one({"name" : username})
+
+   # Get length of recipecards array in order to create pagination
+   login_user_len = users.find_one({"name" : username})
+
+   # Get lenght of recipecards
+   length_pagination = len(login_user_len["recipe_cards"])
+
+   # Number of paginatoion needed
+   pages = math.ceil(length_pagination / 5)
+
+   offset = 0
+   clicked_page = 0
+   
+   if request.method == "POST":
+      number = int(request.form["page_number"])
+      print("++++++++++++++++++PRINT clicked number ++++++++++++++")
+      print(number)
+
+      clicked_page = number -1
+
+      if number == 1:
+         offset = number - 1
       
-   return render_template("main_page.html", user=login_user)
+      elif number == 2:
+         offset = 5
+
+      elif number > 2:
+         offset = 5 * (number - 1)
+
+   print("+++++++++++++PRINT OFFSET+++++++++++++++++")
+   print(offset)
+   limit = 5
+   print("limit is ")
+   print(limit)
+   print(clicked_page)
+
+   # Show only 5 recipe cards on the page
+   showed_cards = users.find_one(
+      {"name" : username},
+      
+      {"recipe_cards": {"$slice": [offset, limit]}}
+      )
+
+   return render_template("main_page.html", user=showed_cards, pages=pages, clicked_page=clicked_page)
 
 # Sorting cards based on name or cusiene
 @app.route("/main_page_query/<username>", methods=['GET', 'POST'])
@@ -180,7 +221,7 @@ def add_page(username):
                      "recipe_name" : request.form["recipe_name"].capitalize(),
                      "cuisine": request.form["cuisine"].capitalize(),
                      "recipe" : request.form["recipe"],
-                     "cooked" : 0,
+                     "cooked" : int(0),
                      "img" : "empty"
                      }
                   }
@@ -256,7 +297,7 @@ def update_cookcard(username, recipe_name, recipe_img):
                   "recipe_cards.$.recipe_name": request.form["recipe_name"].capitalize(),
                   "recipe_cards.$.cuisine": request.form["cuisine"].capitalize(),
                   "recipe_cards.$.recipe": request.form["recipe"],
-                  "recipe_cards.$.cooked": request.form["cooked"]
+                  "recipe_cards.$.cooked": int(request.form["cooked"])
                }
             })
 
@@ -271,7 +312,7 @@ def update_cookcard(username, recipe_name, recipe_img):
                   "recipe_cards.$.recipe_name": request.form["recipe_name"].capitalize(),
                   "recipe_cards.$.cuisine": request.form["cuisine"].capitalize(),
                   "recipe_cards.$.recipe": request.form["recipe"],
-                  "recipe_cards.$.cooked": request.form["cooked"]
+                  "recipe_cards.$.cooked": int(request.form["cooked"])
                }
             }
          )
@@ -322,6 +363,8 @@ def remove_cookcard():
 def add_cooked(): 
    if request.method == "POST":
       user = mongo.db.users
+
+      #TODO: when get hearts upvote in other than 1 page (2, 3...) than we have to pass page number otherwise the first page will be loaded!
 
       username = request.form["username"]
       recipe_name = request.form["recipe_name"]

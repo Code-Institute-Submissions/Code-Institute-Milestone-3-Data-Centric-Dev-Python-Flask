@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="name{{ session['username'] }}">
+<div class="username" id="name{{ session['username'] }}" name="{{ session['username'] }}">
 
    <!-- Logout button -->
    <div class="arrow-back text-align--right"><a href="{{ url_for('landing_page') }}"
@@ -99,7 +99,8 @@
                               value="{{ recipe_card.img }}">
                            <!-- / Hidden inputs for passing data AJAX -->
 
-                           <button class="btn-floating waves-effect waves-light btn-heart" recipe_id="{{ recipe_card.recipe_id }}">
+                           <button class="btn-floating waves-effect waves-light btn-heart"
+                              recipe_id="{{ recipe_card.recipe_id }}">
                               <i class="material-icons heart">favorite_border</i>
                            </button>
                            <span class="cooked-number cookedInput{{ recipe_card.recipe_id }}"
@@ -122,8 +123,10 @@
                               value="{{ recipe_card.recipe_name }}">
                            <!-- / Hidden inputs for passing data AJAX -->
 
-                           <button class="btn-floating btn-floating-tool waves-effect waves-light white removeCardBtn" recipe_id="{{ recipe_card.recipe_id }}"><i class="material-icons remove" >remove</i>Remove</button>
-                     </div>
+                           <button class="btn-floating btn-floating-tool waves-effect waves-light white removeCardBtn"
+                              recipe_id="{{ recipe_card.recipe_id }}"><i
+                                 class="material-icons remove">remove</i>Remove</button>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -139,6 +142,32 @@
       </div>
    </div>
    <!-- /Cards container -->
+
+   <!-- Pagination -->
+   <div class="center-align">
+      <ul class="pagination">
+         {% if clicked_page > 0 %}
+         <li class="waves-effect"><a class="pagination-arrow-backward" href="#"><i class="material-icons">chevron_left</i></a></li>
+         {% else %}
+         <li class="disabled"><a class="pagination-arrow-backward" href="#"><i class="material-icons">chevron_left</i></a></li>
+         {% endif %}
+
+         {% for n in range(pages) %}
+            {% if n == clicked_page %}
+            <li class="waves-effect active"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
+            {% else %}
+            <li class="waves-effect"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
+            {% endif %}
+         {% endfor %}
+
+         {% if clicked_page == (pages - 1) %}
+         <li class="disabled"><a class="pagination-arrow-forward" href="#"><i class="material-icons">chevron_right</i></a></li>
+         {% else %}
+         <li class="waves-effect"><a class="pagination-arrow-forward" href="#"><i class="material-icons">chevron_right</i></a></li>
+         {% endif %}
+      </ul>
+   </div>
+   <!-- /Pagination -->
 </div>
 
 {% endblock %}
