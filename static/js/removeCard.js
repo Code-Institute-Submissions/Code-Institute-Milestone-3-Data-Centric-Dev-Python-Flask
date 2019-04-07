@@ -20,7 +20,6 @@ $(".removeCardBtn").on("click", function(event) {
    })
    .done(function(data) {
       $("#name"+username).html(data);
-      console.log("Card was removed")
    });
 
 event.preventDefault();

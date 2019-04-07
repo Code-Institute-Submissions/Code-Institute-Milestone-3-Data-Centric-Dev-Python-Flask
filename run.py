@@ -407,6 +407,7 @@ def add_cooked():
 
       return get_pagination(user, username, current_page)
 
+
 @app.route('/logout')
 def logout():
    # remove the username from the session if it is there

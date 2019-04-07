@@ -61,9 +61,6 @@ $(".pagination-arrow-backward").on("click", function(event) {
    numberOfPag--;
    let username = $(".username").attr("name");
 
-   console.log("number of clicked: " + numberOfPag);  
-   console.log("Id username: " + username);
-
    $.ajax({
       data: {
          page_number: numberOfPag
@@ -73,9 +70,6 @@ $(".pagination-arrow-backward").on("click", function(event) {
    })
    .done(function(data) {
       $("#name"+username).html(data);
-
-      console.log("Data returned here:")
-     // console.log(data);
    });
 
    event.preventDefault();

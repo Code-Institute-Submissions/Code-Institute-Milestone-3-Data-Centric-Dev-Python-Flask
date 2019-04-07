@@ -9,8 +9,6 @@ $(".btn-heart").on("click", function(event) {
    let cooked = $(".cookedInput"+recipe_id).text();
    let currentPage = $(".active").text();
 
-   console.log("Current page is: "+currentPage)
-
    $.ajax({
       data: {
          username: username,
