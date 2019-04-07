@@ -9,7 +9,7 @@
             class="material-icons">backspace</i></a></div>
    <!-- /Logout button -->
 
-   <h2 class="center-align">Welcome to your cookbook, {{ user.name }}!</h2>
+   <h2 class="center-align" id="header">Welcome to your cookbook, {{ user.name }}!</h2>
 
    <!-- Sort by Select -->
    <div class="container-select">
@@ -29,6 +29,36 @@
       </div>
    </div>
    <!-- Sort by Select -->
+
+   <!-- Pagination -->
+   <div class="center-align">
+      <ul class="pagination">
+         {% if clicked_page > 0 %}
+         <li class="waves-effect"><a class="pagination-arrow-backward" href="#header"><i
+                  class="material-icons">chevron_left</i></a></li>
+         {% else %}
+         <li class="disabled"><a class="pagination-arrow-backward" href="#header"><i
+                  class="material-icons">chevron_left</i></a></li>
+         {% endif %}
+
+         {% for n in range(pages) %}
+         {% if n == clicked_page %}
+         <li class="waves-effect active"><a class="pagination-btn" href="#header">{{ n + 1 }}</a></li>
+         {% else %}
+         <li class="waves-effect"><a class="pagination-btn" href="#header">{{ n + 1 }}</a></li>
+         {% endif %}
+         {% endfor %}
+
+         {% if clicked_page == (pages - 1) %}
+         <li class="disabled"><a class="pagination-arrow-forward" href="#header"><i
+                  class="material-icons">chevron_right</i></a></li>
+         {% else %}
+         <li class="waves-effect"><a class="pagination-arrow-forward" href="#header"><i
+                  class="material-icons">chevron_right</i></a></li>
+         {% endif %}
+      </ul>
+   </div>
+   <!-- /Pagination -->
 
    <!-- Cards container -->
    <div class="container container-cards">
@@ -149,26 +179,26 @@
    <div class="center-align">
       <ul class="pagination">
          {% if clicked_page > 0 %}
-         <li class="waves-effect"><a class="pagination-arrow-backward" href="#"><i
+         <li class="waves-effect"><a class="pagination-arrow-backward" href="#header"><i
                   class="material-icons">chevron_left</i></a></li>
          {% else %}
-         <li class="disabled"><a class="pagination-arrow-backward" href="#"><i
+         <li class="disabled"><a class="pagination-arrow-backward" href="#header"><i
                   class="material-icons">chevron_left</i></a></li>
          {% endif %}
 
          {% for n in range(pages) %}
          {% if n == clicked_page %}
-         <li class="waves-effect active"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
+         <li class="waves-effect active"><a class="pagination-btn" href="#header">{{ n + 1 }}</a></li>
          {% else %}
-         <li class="waves-effect"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
+         <li class="waves-effect"><a class="pagination-btn" href="#header">{{ n + 1 }}</a></li>
          {% endif %}
          {% endfor %}
 
          {% if clicked_page == (pages - 1) %}
-         <li class="disabled"><a class="pagination-arrow-forward" href="#"><i
+         <li class="disabled"><a class="pagination-arrow-forward" href="#header"><i
                   class="material-icons">chevron_right</i></a></li>
          {% else %}
-         <li class="waves-effect"><a class="pagination-arrow-forward" href="#"><i
+         <li class="waves-effect"><a class="pagination-arrow-forward" href="#header"><i
                   class="material-icons">chevron_right</i></a></li>
          {% endif %}
       </ul>
