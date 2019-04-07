@@ -1,4 +1,11 @@
-// Color for buttons #e76114
+// Global
+.btn {
+   background-color: #e76114 !important;
+}
+
+.btn:hover {
+   background-color: #fd6208 !important;
+}
 
 
 
@@ -12,6 +19,7 @@
 .login:hover {
    background-color: rgba(0,0,0,0.1);
 }
+
 
 
 // CALLOUT SECTION
