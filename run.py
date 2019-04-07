@@ -25,7 +25,6 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-
 def get_pagination(user, username, current_page):
    # Return to the same page where the card was
    # Get length of recipecards array in order to create pagination
@@ -100,7 +99,7 @@ def landing_page():
             "password" : hashpass,
             "recipe_cards" : [
                   {
-                     "recipe_id": randint(1,100000),
+                     "recipe_id": randint(1,1000000),
                      "recipe_name" : "Spaghetti Bolognese",
                      "cuisine": "Italian",
                      "recipe" : "Spaghetty with tomato's sauce",
@@ -226,7 +225,7 @@ def add_page(username):
             users.update( {"name": username},
             {
                "$push": {"recipe_cards": {
-                  "recipe_id": randint(1,100000),
+                  "recipe_id": randint(1,1000000),
                   "recipe_name" : request.form["recipe_name"].capitalize(),
                   "cuisine": request.form["cuisine"].capitalize(),
                   "recipe" : request.form["recipe"],
@@ -239,7 +238,7 @@ def add_page(username):
          users.update( {"name": username},
                {
                   "$push": {"recipe_cards": {
-                     "recipe_id": randint(1,100000),
+                     "recipe_id": randint(1,1000000),
                      "recipe_name" : request.form["recipe_name"].capitalize(),
                      "cuisine": request.form["cuisine"].capitalize(),
                      "recipe" : request.form["recipe"],
