@@ -9,6 +9,7 @@
 
 
 
+
 // Landing page - navbar
 .login {
    position: absolute;
@@ -153,11 +154,15 @@
       }
    }
 
+   .card-color {
+      background: #ece2e0 !important;
+   }
+
    .btn-heart {
       background: #ffffff;
 
       .heart{
-         color: #fc5975;
+         color: #ed1616;
          font-weight: bold;
       }
    }
@@ -173,7 +178,7 @@
    }
 
    .hearts {
-      color: #fc5975;
+      color: #ed1616;
       margin-top: 20px;
    }
 

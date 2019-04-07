@@ -50,8 +50,8 @@
          <div class="col s12 m6 l4">
             <div class="card medium">
 
-               <div class="center-align activator"><span
-                     class="card-title grey-text text-darken-4">{{ recipe_card.recipe_name }}</span></div>
+               <div class="center-align activator card-color"><span
+                     class="card-title grey-text text-darken-4"><strong>{{ recipe_card.recipe_name }}</strong></span></div>
 
                <div class="card-image waves-effect waves-block waves-light">
                   {% if recipe_card.img == "empty" %}
@@ -66,7 +66,7 @@
                <div class="card-content">
                   <div class="card-title activator grey-text text-darken-4">
                      <p class="icon--inline-block activator">{{ recipe_card.cuisine }}</p>
-                     <button class="right activator waves-effect waves-light btn-small">Recipe<i
+                     <button class="right activator waves-effect waves-light btn-small btn white-text">Recipe<i
                            class="material-icons right fork">restaurant_menu</i></button>
                   </div>
 
@@ -88,7 +88,7 @@
                      {% endif %}
                   </div>
 
-                  <div class="card-action">
+                  <div class="card-action card-color">
                      <div class="left">
                         <div class="icon--inline-block">
 

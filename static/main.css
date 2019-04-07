@@ -117,11 +117,14 @@
 .container-cards .add-card .icon-plus {
   font-size: 185px;
 }
+.container-cards .card-color {
+  background: #ece2e0 !important;
+}
 .container-cards .btn-heart {
   background: #ffffff;
 }
 .container-cards .btn-heart .heart {
-  color: #fc5975;
+  color: #ed1616;
   font-weight: bold;
 }
 .container-cards .btn-floating-tool {
@@ -133,7 +136,7 @@
   font-size: 18px;
 }
 .container-cards .hearts {
-  color: #fc5975;
+  color: #ed1616;
   margin-top: 20px;
 }
 .container-cards .btn-small {
