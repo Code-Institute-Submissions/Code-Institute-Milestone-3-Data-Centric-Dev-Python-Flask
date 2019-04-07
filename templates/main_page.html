@@ -34,6 +34,7 @@
    <div class="container container-cards">
       <div class="row">
 
+         <!-- Add a new card -->
          <div class="col s12 m6 l4">
             <a href="{{ url_for('add_page', username=session['username']) }}">
                <div class="card">
@@ -43,6 +44,7 @@
                </div>
             </a>
          </div>
+         <!-- /Add a new card -->
 
          {% for recipe_card in user.recipe_cards %}
          <div class="col s12 m6 l4">
@@ -109,7 +111,7 @@
                         </div>
                      </div>
                      <div class="right">
-                        <p class="icon--inline-block margin-right"><a 
+                        <p class="icon--inline-block margin-right"><a
                               class="btn-floating btn-floating-tool waves-effect waves-light white"
                               href="{{ url_for('edit_page', username=session['username'], recipe_name=recipe_card.recipe_name) }}"><i
                                  class="material-icons tool">edit</i>Edit</a>
@@ -147,23 +149,27 @@
    <div class="center-align">
       <ul class="pagination">
          {% if clicked_page > 0 %}
-         <li class="waves-effect"><a class="pagination-arrow-backward" href="#"><i class="material-icons">chevron_left</i></a></li>
+         <li class="waves-effect"><a class="pagination-arrow-backward" href="#"><i
+                  class="material-icons">chevron_left</i></a></li>
          {% else %}
-         <li class="disabled"><a class="pagination-arrow-backward" href="#"><i class="material-icons">chevron_left</i></a></li>
+         <li class="disabled"><a class="pagination-arrow-backward" href="#"><i
+                  class="material-icons">chevron_left</i></a></li>
          {% endif %}
 
          {% for n in range(pages) %}
-            {% if n == clicked_page %}
-            <li class="waves-effect active"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
-            {% else %}
-            <li class="waves-effect"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
-            {% endif %}
+         {% if n == clicked_page %}
+         <li class="waves-effect active"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
+         {% else %}
+         <li class="waves-effect"><a class="pagination-btn" href="#">{{ n + 1 }}</a></li>
+         {% endif %}
          {% endfor %}
 
          {% if clicked_page == (pages - 1) %}
-         <li class="disabled"><a class="pagination-arrow-forward" href="#"><i class="material-icons">chevron_right</i></a></li>
+         <li class="disabled"><a class="pagination-arrow-forward" href="#"><i
+                  class="material-icons">chevron_right</i></a></li>
          {% else %}
-         <li class="waves-effect"><a class="pagination-arrow-forward" href="#"><i class="material-icons">chevron_right</i></a></li>
+         <li class="waves-effect"><a class="pagination-arrow-forward" href="#"><i
+                  class="material-icons">chevron_right</i></a></li>
          {% endif %}
       </ul>
    </div>

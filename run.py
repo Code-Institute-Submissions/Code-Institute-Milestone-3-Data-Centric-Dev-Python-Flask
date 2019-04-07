@@ -25,6 +25,64 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+
+def get_pagination(user, username, current_page):
+   # Return to the same page where the card was
+   # Get length of recipecards array in order to create pagination
+   login_user_len = user.find_one({"name" : username})
+
+   # Get lenght of recipecards
+   length_pagination = len(login_user_len["recipe_cards"])
+
+   # Number of paginatoion needed
+   pages = math.ceil(length_pagination / 5)
+
+   offset = 0
+   clicked_page = 0
+
+   # If initial render 
+   if current_page == -1:
+
+      limit = 5
+      # Show only 5 recipe cards on the page
+      show_cards = user.find_one(
+         {"name" : username},
+            
+         {"recipe_cards": {"$slice": [offset, limit]}}
+      )
+
+      return render_template("main_page.html", user=show_cards, pages=pages, clicked_page=clicked_page)
+
+   else:      
+      if request.method == "POST":
+
+         number = current_page
+
+         # -1 because of indexing (page 1 has index 0)
+         clicked_page = number - 1
+
+         if number == 1:
+            offset = number - 1
+               
+         elif number == 2:
+            offset = 5
+
+         elif number > 2:
+            offset = 5 * (number - 1)
+
+      limit = 5
+
+      # Show only 5 recipe cards on the page
+      show_cards = user.find_one(
+         {"name" : username},
+               
+         {"recipe_cards": {"$slice": [offset, limit]}}
+      )
+
+      return render_template("main_page.html", user=show_cards, pages=pages, clicked_page=clicked_page)
+
+
+
 @app.route("/")
 @app.route("/landing_page", methods=['GET', 'POST'])
 def landing_page():
@@ -35,6 +93,7 @@ def landing_page():
 
       if existing_user is None:
          hashpass = bcrypt.generate_password_hash(request.form["password"]).decode("utf-8")
+
          # Insert default data to mongoDB Atlas
          users.insert({
             "name" : request.form["username"],
@@ -83,49 +142,20 @@ def login():
 @app.route("/main_page/<username>", methods=['GET', 'POST'])
 def main_page(username):
    users = mongo.db.users
+   # -1 for initial render
+   current_page = -1
 
-   # Get length of recipecards array in order to create pagination
-   login_user_len = users.find_one({"name" : username})
-
-   # Get lenght of recipecards
-   length_pagination = len(login_user_len["recipe_cards"])
-
-   # Number of paginatoion needed
-   pages = math.ceil(length_pagination / 5)
-
-   offset = 0
-   clicked_page = 0
-   
    if request.method == "POST":
-      number = int(request.form["page_number"])
+      current_page = int(request.form["page_number"])
+   
 
-      clicked_page = number -1
+   return get_pagination(users, username, current_page)
 
-      if number == 1:
-         offset = number - 1
-      
-      elif number == 2:
-         offset = 5
-
-      elif number > 2:
-         offset = 5 * (number - 1)
-
-   limit = 5
-
-   # Show only 5 recipe cards on the page
-   showed_cards = users.find_one(
-      {"name" : username},
-      
-      {"recipe_cards": {"$slice": [offset, limit]}}
-      )
-
-   return render_template("main_page.html", user=showed_cards, pages=pages, clicked_page=clicked_page)
-
-# Sorting cards based on name or cusiene
 @app.route("/main_page_query/<username>", methods=['GET', 'POST'])
 def main_page_query(username):
    users = mongo.db.users
    
+   # Sorting cards based on name, cusiene or hearts
    if request.method == 'POST':
       sort_by = request.form["sort"]
       
@@ -156,7 +186,6 @@ def main_page_query(username):
             }
          )
       else:
-         print("THis woas execute")
          # Sorting by cooked number
          users.update(
             { "name": username},
@@ -210,7 +239,7 @@ def add_page(username):
          users.update( {"name": username},
                {
                   "$push": {"recipe_cards": {
-                     "recipe_id": randint(1,1000),
+                     "recipe_id": randint(1,100000),
                      "recipe_name" : request.form["recipe_name"].capitalize(),
                      "cuisine": request.form["cuisine"].capitalize(),
                      "recipe" : request.form["recipe"],
@@ -232,7 +261,6 @@ def file(filename):
 
 @app.route("/main_page/<username>/edit_cookcard/<recipe_name>", methods=['GET', 'POST'])
 def edit_page(username, recipe_name):
-
 
    # It returns just one object in array of recipe_cards
    cookcard = mongo.db.users.find_one({
@@ -352,42 +380,8 @@ def remove_cookcard():
             {"files_id": ObjectId(fs_file_id["_id"])}
          )
 
-      # Get length of recipecards array in order to create pagination
-      login_user_len = user.find_one({"name" : username})
+      return get_pagination(user, username, current_page)
 
-      # Get lenght of recipecards
-      length_pagination = len(login_user_len["recipe_cards"])
-
-      # Number of paginatoion needed
-      pages = math.ceil(length_pagination / 5)
-
-      offset = 0
-      clicked_page = 0
-         
-      if request.method == "POST":
-         number = current_page
-
-         clicked_page = number -1
-
-         if number == 1:
-            offset = number - 1
-            
-         elif number == 2:
-            offset = 5
-
-         elif number > 2:
-            offset = 5 * (number - 1)
-
-      limit = 5
-
-      # Show only 5 recipe cards on the page
-      showed_cards = user.find_one(
-         {"name" : username},
-            
-         {"recipe_cards": {"$slice": [offset, limit]}}
-      )
-
-      return render_template("main_page.html", user=showed_cards, pages=pages, clicked_page=clicked_page)
 
 @app.route("/main_page/cooked", methods=['GET', 'POST'])
 def add_cooked(): 
@@ -412,43 +406,7 @@ def add_cooked():
             }
          })
 
-      # Get length of recipecards array in order to create pagination
-      login_user_len = user.find_one({"name" : username})
-
-      # Get lenght of recipecards
-      length_pagination = len(login_user_len["recipe_cards"])
-
-      # Number of paginatoion needed
-      pages = math.ceil(length_pagination / 5)
-
-      offset = 0
-      clicked_page = 0
-         
-      if request.method == "POST":
-         number = current_page
-
-         clicked_page = number -1
-
-         if number == 1:
-            offset = number - 1
-            
-         elif number == 2:
-            offset = 5
-
-         elif number > 2:
-            offset = 5 * (number - 1)
-
-      limit = 5
-
-      # Show only 5 recipe cards on the page
-      showed_cards = user.find_one(
-         {"name" : username},
-            
-         {"recipe_cards": {"$slice": [offset, limit]}}
-      )
-
-      return render_template("main_page.html", user=showed_cards, pages=pages, clicked_page=clicked_page)
-
+      return get_pagination(user, username, current_page)
 
 if __name__ == '__main__':
    app.run(debug=True)
