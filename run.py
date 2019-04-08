@@ -102,7 +102,7 @@ def landing_page():
                      "recipe_id": randint(1,1000000),
                      "recipe_name" : "Spaghetti Bolognese",
                      "cuisine": "Italian",
-                     "recipe" : "Spaghetty with tomato's sauce",
+                     "recipe" : "<p>Spaghetty with tomato's sauce</p>",
                      "cooked" : int(0),
                      "img" : "empty"
                   }
