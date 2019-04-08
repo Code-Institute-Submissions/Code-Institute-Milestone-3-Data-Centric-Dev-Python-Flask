@@ -4,7 +4,7 @@
 <section class="container-cookcard">
       <!-- Back button-->
       <div class="arrow-back"><a href="{{ url_for('main_page', username=session['username']) }}"
-                  class="waves-effect waves-light btn"><i class="material-icons">arrow_back</i></a></div>
+                  class="waves-effect waves-light btn btn--orange"><i class="material-icons">arrow_back</i></a></div>
       <!-- /Back button-->
       <div class="container">
             <h3 class="center-align">Edit Your Food Card</h3>
@@ -41,11 +41,11 @@
                         <div class="input-field col s12">
                               <textarea id="editor1" name="recipe"
                                     class="materialize-textarea">{{ cookcard.recipe }}</textarea>
-                              <label for="recipe">Recipe</label>
+                              <label hidden for="recipe">Recipe</label>
                         </div>
                   </div>
                   <div class="center-align">
-                        <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                        <button type="submit" class="waves-effect waves-light btn btn--orange">Submit</button>
                   </div>
             </form>
       </div>

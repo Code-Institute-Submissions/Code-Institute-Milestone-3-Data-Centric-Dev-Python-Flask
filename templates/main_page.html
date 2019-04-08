@@ -2,15 +2,15 @@
 {% block content %}
 
 <div class="username" id="name{{ session['username'] }}" name="{{ session['username'] }}">
+   <div class="bg">
+      <!-- Logout button -->
+      <div class="arrow-back text-align--right"><a href="{{ url_for('logout') }}"
+            class="waves-effect waves-light btn btn--orange "><span class="logout-icon">Log Out</span><i
+               class="material-icons">backspace</i></a></div>
+      <!-- /Logout button -->
 
-   <!-- Logout button -->
-   <div class="arrow-back text-align--right"><a href="{{ url_for('logout') }}"
-         class="waves-effect waves-light btn"><span class="logout-icon">Log Out</span><i
-            class="material-icons">backspace</i></a></div>
-   <!-- /Logout button -->
-
-   <h2 class="center-align" id="header">Welcome to your cookbook, {{ user.name }}!</h2>
-
+      <h2 class="center-align" id="header">Welcome to your cookbook, {{ user.name }}!</h2>
+   </div>
    <!-- Sort by Select -->
    <div class="container-select">
       <div class="row display-flex">
@@ -23,7 +23,7 @@
                   <option value="cuisine">Cuisine</option>
                   <option value="cooked">Hearts</option>
                </select>
-               <button class="waves-effect waves-light btn button-margin--top">Sort</button>
+               <button class="waves-effect waves-light btn btn--orange button-margin--top">Sort</button>
             </form>
          </div>
       </div>
@@ -51,7 +51,8 @@
             <div class="card medium">
 
                <div class="center-align activator card-color"><span
-                     class="card-title grey-text text-darken-4"><strong>{{ recipe_card.recipe_name }}</strong></span></div>
+                     class="card-title grey-text text-darken-4"><strong>{{ recipe_card.recipe_name }}</strong></span>
+               </div>
 
                <div class="card-image waves-effect waves-block waves-light">
                   {% if recipe_card.img == "empty" %}
@@ -66,7 +67,8 @@
                <div class="card-content">
                   <div class="card-title activator grey-text text-darken-4">
                      <p class="icon--inline-block activator">{{ recipe_card.cuisine }}</p>
-                     <button class="right activator waves-effect waves-light btn-small btn white-text">Recipe<i
+                     <button
+                        class="right activator waves-effect waves-light btn-small btn btn--orange white-text">Recipe<i
                            class="material-icons right fork">restaurant_menu</i></button>
                   </div>
 
@@ -125,7 +127,7 @@
                               value="{{ recipe_card.recipe_name }}">
                            <!-- / Hidden inputs for passing data AJAX -->
 
-                           <button class="btn-floating btn-floating-tool waves-effect waves-light white removeCardBtn"
+                           <button class="btn-floating btn-floating-tool waves-effect waves-light white removeCardbtn"
                               recipe_id="{{ recipe_card.recipe_id }}"><i
                                  class="material-icons remove">remove</i>Remove</button>
                         </div>

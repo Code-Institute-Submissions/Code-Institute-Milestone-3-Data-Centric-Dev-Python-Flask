@@ -2,13 +2,12 @@
 {% block content %}
 
 <!-- Navbar -->
-<nav>
+<nav class="nav-landing">
    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Cookbook Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger btn btn--orange hamburger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-         <li><a href="{{ url_for('login') }}">Login</a></li>
-         <a href="#sign-up" class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign
+         <li><a href="{{ url_for('login') }}" class="waves-effect waves-light btn btn--orange login">Login</a></li>
+         <a href="#sign-up" class="waves-effect waves-light btn btn--orange"><i class="material-icons left">person_add</i>Sign
             Up</a>
       </ul>
    </div>
@@ -28,7 +27,7 @@
    <div class="container">
       <div class="jumbotron">
          <h1 class="center-align">CREATE YOUR OWN COOKBOOK</h1>
-         <div class="center-align"><a href="#sign-up" class="waves-effect waves-light btn">Sign Up</a></div>
+         <div class="center-align"><a href="#sign-up" class="waves-effect waves-light btn btn--orange">Sign Up</a></div>
       </div>
    </div>
 </section>
@@ -52,7 +51,7 @@
                <label for="password">Password</label>
             </div>
          </div>
-         <div class="center-align"><button type="submit" class="waves-effect waves-light btn">Sign Up</button></div>
+         <div class="center-align"><button type="submit" class="waves-effect waves-light btn btn--orange">Sign Up</button></div>
       </form>
    </div>
 </section>
