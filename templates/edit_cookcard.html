@@ -10,7 +10,7 @@
             <h3 class="center-align">Edit Your Food Card</h3>
 
             <form action="{{ url_for('update_cookcard', username=session['username'], recipe_name=cookcard.recipe_name, recipe_img=cookcard.img) }}"
-                  method="POST" class="col s12" enctype="multipart/form-data">
+                  method="POST" class="col s12 margin-bottom--20px" enctype="multipart/form-data">
                   <div class="row">
                         <div class="input-field col s12">
                               <input id="upload_picture" name="upload_picture" type="file" class="validate">

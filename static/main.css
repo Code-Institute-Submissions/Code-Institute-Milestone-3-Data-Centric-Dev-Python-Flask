@@ -32,6 +32,10 @@ label {
   color: #e76114 !important;
 }
 
+.margin-bottom--20px {
+  margin-bottom: 20px;
+}
+
 .login {
   background-color: rgba(255, 255, 255, 0.637) !important;
   color: #e76114;
