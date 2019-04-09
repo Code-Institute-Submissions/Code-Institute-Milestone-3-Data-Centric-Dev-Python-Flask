@@ -2,13 +2,13 @@
 {% block content %}
 
 <!-- Navbar -->
-<nav>
+<nav class="nav-landing">
    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Cookbook Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger btn btn--orange hamburger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-         <li><a href="{{ url_for('login') }}">Log In |</a></li>
-         <a href="#sign-up" class="waves-effect waves-light btn"><i class="material-icons left">person_add</i>Sign Up</a>
+         <li><a href="{{ url_for('login') }}" class="waves-effect waves-light btn btn--orange login">Login</a></li>
+         <a href="#sign-up" class="waves-effect waves-light btn btn--orange"><i class="material-icons left">person_add</i>Sign
+            Up</a>
       </ul>
    </div>
 </nav>
@@ -17,7 +17,7 @@
 <!-- Hamburger menu -->
 <ul class="sidenav slide-out" id="mobile-demo">
    <li><a class="sidenav-close" href="#!">Close Menu</a></li>
-   <li><a href="#">Sing In</a></li>
+   <li><a href="{{ url_for('login') }}">Login</a></li>
    <li><a href="#sign-up" class="sidenav-close">Sing Up</a></li>
 </ul>
 <!-- /Hamburger menu -->
@@ -26,8 +26,8 @@
 <section class="callout-container">
    <div class="container">
       <div class="jumbotron">
-         <h1 class="center-align">Create your own cookbook</h1>
-         <div class="center-align"><a href="#sign-up" class="waves-effect waves-light btn">Sign Up</a></div>
+         <h1 class="center-align">CREATE YOUR OWN COOKBOOK</h1>
+         <div class="center-align"><a href="#sign-up" class="waves-effect waves-light btn btn--orange">Sign Up</a></div>
       </div>
    </div>
 </section>
@@ -37,34 +37,23 @@
 <section class="sing-up-container" id="sign-up">
    <div class="row container sign-up--padding-top">
       <h3 class="center-align">Create your account</h3>
-      <form method="POST" action="{{ url_for('landing_page') }}" class="col s12">
+      <form id="singUpForm" class="col s12">
          <div class="row">
             <div class="input-field col s12">
-               <input id="username" name="username" type="text" class="validate">
+               <input id="username" name="username" type="text" class="validate" required>
                <label for="username">Username</label>
             </div>
+            <p id="errorAlert" style="display: none; color:tomato;"></p>
          </div>
          <div class="row">
             <div class="input-field col s12">
-               <input id="password" name="password" type="password" class="validate">
+               <input id="password" name="password" type="password" class="validate" required>
                <label for="password">Password</label>
             </div>
          </div>
-         <div class="center-align"><button type="submit" class="waves-effect waves-light btn">Sign Up</button></div>
+         <div class="center-align"><button type="submit" class="waves-effect waves-light btn btn--orange">Sign Up</button></div>
       </form>
    </div>
 </section>
 <!-- /Sing Up section -->
-
-
-
-<!--
-   {% for recipe_card in recipe_cards %}
-      {{recipe_card.img}}
-      {{recipe_card.recipe_name}}
-      {{recipe_card.cuisine}}
-      {{recipe_card.recipe}}
-      {{recipe_card.cooked}}
--->
-{% endfor %}
 {% endblock %}

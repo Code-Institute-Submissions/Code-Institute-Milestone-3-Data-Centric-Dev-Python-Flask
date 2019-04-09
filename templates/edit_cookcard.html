@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Add cookcard section -->
+<section class="container-cookcard">
+      <!-- Back button-->
+      <div class="arrow-back"><a href="{{ url_for('main_page', username=session['username']) }}"
+                  class="waves-effect waves-light btn btn--orange"><i class="material-icons">arrow_back</i></a></div>
+      <!-- /Back button-->
+      <div class="container">
+            <h3 class="center-align">Edit Your Food Card</h3>
+
+            <form action="{{ url_for('update_cookcard', username=session['username'], recipe_name=cookcard.recipe_name, recipe_img=cookcard.img) }}"
+                  method="POST" class="col s12 margin-bottom--20px" enctype="multipart/form-data">
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="upload_picture" name="upload_picture" type="file" class="validate">
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="recipe_name" name="recipe_name" type="text" class="validate"
+                                    value="{{ cookcard.recipe_name }}">
+                              <label for="recipe_name">Food name</label>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="cuisine" name="cuisine" type="text" class="validate"
+                                    value="{{ cookcard.cuisine }}">
+                              <label for="cuisine">Cuisine</label>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <input id="cooked" name="cooked" type="number" class="validate"
+                                    value="{{ cookcard.cooked }}">
+                              <label for="cooked">Cooked</label>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="input-field col s12">
+                              <textarea id="editor1" name="recipe"
+                                    class="materialize-textarea">{{ cookcard.recipe }}</textarea>
+                              <label hidden for="recipe">Recipe</label>
+                        </div>
+                  </div>
+                  <div class="center-align">
+                        <button type="submit" class="waves-effect waves-light btn btn--orange">Submit</button>
+                  </div>
+            </form>
+      </div>
+</section>
+{% endblock%}

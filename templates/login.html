@@ -2,25 +2,38 @@
 {% block content %}
 
 <!-- Log In section -->
-<section class="sing-up-container" id="sign-up">
-   <div class="arrow-back"><a href="{{ url_for('landing_page') }}" class="waves-effect waves-light btn"><i class="material-icons">arrow_back</i></a></div>
-   <div class="row container sign-up--padding-top">
-      <h3 class="center-align">Log In to your cookbook account</h3>
+<section class="login-container" id="login">
+   <!-- Back button-->
+   <div class="arrow-back"><a href="{{ url_for('landing_page') }}" class="waves-effect waves-light btn btn--orange"><i
+            class="material-icons">arrow_back</i></a></div>
+   <!-- /Back button-->
+
+   <div class="row container login--padding-top">
+      <h3 class="center-align">Login to your cookbook account</h3>
       <form method="POST" class="col s12">
          <div class="row">
             <div class="input-field col s12">
-               <input id="username" name="username" type="text" class="validate">
+               <input id="username" name="username" type="text" class="validate" autofocus required>
                <label for="username">Username</label>
             </div>
          </div>
          <div class="row">
             <div class="input-field col s12">
-               <input id="password" name="password" type="password" class="validate">
+               <input id="password" name="password" type="password" class="validate" required>
                <label for="password">Password</label>
             </div>
          </div>
-         <div class="center-align"><button type="submit" class="waves-effect waves-light btn">Log In</button></div>
+         <div class="center-align"><button type="submit" class="waves-effect waves-light btn btn--orange">Log In</button></div>
       </form>
+   </div>
+   <div class="flash container center-align">
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+         {% endif %}
+         {% endwith %}   
    </div>
 </section>
 <!-- /Log In section -->
