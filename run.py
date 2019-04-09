@@ -210,7 +210,7 @@ def add_page(username):
          file = request.files['upload_picture']
 
          if not allowed_file(file.filename):
-            flash("Extenstion is not allowed")
+            flash("Extenstion is not allowed. Please, use one of these: png, jpg, jpeg or gif")
             return redirect(url_for("add_page", username=username))
 
          if file and allowed_file(file.filename):
@@ -280,7 +280,7 @@ def update_cookcard(username, recipe_name, recipe_img):
          file = request.files['upload_picture']
 
          if not allowed_file(file.filename):
-            flash("Extenstion is not allowed")
+            flash("Extenstion is not allowed. Please, use one of these: png, jpg, jpeg or gif")
             return redirect(url_for("add_page", username=username))
 
          if file and allowed_file(file.filename):
