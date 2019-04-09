@@ -1,6 +1,9 @@
+// Variables
+$color-orange: #e76114 !important;
+
 // Global
 .btn--orange {
-   background-color: #e76114 !important;
+   background-color: $color-orange ;
 }
 
 .btn--orange:hover {
@@ -18,15 +21,15 @@ body {
 }
 
 .validate:focus {
-   border-bottom: 1px solid #e76114 !important;
-   -webkit-box-shadow: 0 1px 0 0 #e76114 !important;
-   box-shadow: 0 1px 0 0 #e76114 !important;
+   border-bottom: 1px solid $color-orange;
+   -webkit-box-shadow: 0 1px 0 0 $color-orange;
+   box-shadow: 0 1px 0 0 $color-orange;
 }
 
 .valid {
-   border-bottom: 1px solid #e76114 !important;
-   -webkit-box-shadow: 0 1px 0 0 #e76114 !important;
-   box-shadow: 0 1px 0 0 #e76114 !important;
+   border-bottom: 1px solid $color-orange;
+   -webkit-box-shadow: 0 1px 0 0 $color-orange;
+   box-shadow: 0 1px 0 0 $color-orange;
 }
 
 label {
@@ -42,7 +45,7 @@ label {
 // Landing page - navbar
 .login {
    background-color: rgba(255, 255, 255, 0.637) !important;
-   color: #e76114;
+   color: $color-orange;
    font-weight: bold;
 }
 
@@ -204,12 +207,12 @@ label {
 
       .icon-plus {
          font-size: 185px;
-         color: #e76114;
+         color: $color-orange;
       }
    }
 
    .add-card:hover {
-      border: 4px solid #e76114;
+      border: 4px solid $color-orange;
       box-shadow: 4px 7px 12px #000000;
    }
 

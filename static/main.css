@@ -38,7 +38,7 @@ label {
 
 .login {
   background-color: rgba(255, 255, 255, 0.637) !important;
-  color: #e76114;
+  color: #e76114 !important;
   font-weight: bold;
 }
 
@@ -169,10 +169,10 @@ label {
 }
 .container-cards .add-card .icon-plus {
   font-size: 185px;
-  color: #e76114;
+  color: #e76114 !important;
 }
 .container-cards .add-card:hover {
-  border: 4px solid #e76114;
+  border: 4px solid #e76114 !important;
   box-shadow: 4px 7px 12px #000000;
 }
 .container-cards .card-color {
