@@ -8,8 +8,6 @@ $(".removeCardBtn").on("click", function(event) {
    let img_name = $("#imgInput"+recipe_id).val();
    let currentPage = $(".active").text();
 
-   console.log("Remove was clicked");
-
    $.ajax({
       data: {
          username: username,
@@ -21,7 +19,6 @@ $(".removeCardBtn").on("click", function(event) {
       url: "/main_page/remove_foodcard"
    })
    .done(function(data) {
-      console.log("return data from removing");
       $("#name"+username).html(data);
    });
 
