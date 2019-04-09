@@ -9,22 +9,23 @@
       <div class="container">
             <h3 class="center-align">Add Your New Food Card</h3>
 
-            <div class="flash container center-align">
-                  {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                  {% for message in messages %}
-                  <p>{{ message }}</p>
-                  {% endfor %}
-                  {% endif %}
-                  {% endwith %}
-            </div>
-
             <form method="POST" class="col s12 margin-bottom--20px" enctype="multipart/form-data">
                   <div class="row">
                         <div class="input-field col s12">
                               <input id="upload_picture" name="upload_picture" type="file" class="validate">
                         </div>
                   </div>
+                  <!-- Flash extension is not allowed -->
+                  <div class="flash container left">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p class="flash-extension">{{ message }}</p>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                  </div>
+                  <!-- /Flash extension is not allowed -->
                   <div class="row">
                         <div class="input-field col s12">
                               <input id="recipe_name" name="recipe_name" type="text" class="validate">

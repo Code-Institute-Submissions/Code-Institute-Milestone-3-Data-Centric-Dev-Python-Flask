@@ -36,6 +36,18 @@ label {
   margin-bottom: 20px;
 }
 
+.flash {
+  color: #ba3131;
+  background: #f7f78c;
+  font-size: 18px;
+  width: 100%;
+}
+
+.flash-extension {
+  margin: 0;
+  padding-left: 12px;
+}
+
 .login {
   background-color: rgba(255, 255, 255, 0.637) !important;
   color: #e76114 !important;
@@ -101,11 +113,6 @@ label {
 }
 .login-container .login--padding-top h3 {
   margin-top: 0;
-}
-.login-container .flash {
-  color: #ba3131;
-  background: #f7f78c;
-  font-size: 18px;
 }
 
 .text-align--right {

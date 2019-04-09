@@ -40,7 +40,17 @@ label {
    margin-bottom: 20px;
 }
 
+.flash {
+   color: #ba3131;
+   background: #f7f78c;
+   font-size: 18px;
+   width: 100%;
+}
 
+.flash-extension {
+   margin: 0;
+   padding-left: 12px;
+}
 
 // Landing page - navbar
 .login {
@@ -124,12 +134,6 @@ label {
       h3 {
          margin-top: 0;
       }
-   }
-
-   .flash {
-      color: #ba3131;
-      background: #f7f78c;
-      font-size: 18px;
    }
 }
 
