@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-## User Stories
-As a user I want sing up so that I have own access
-As a user I want to log in so that I can see my stuff
-As a user I want to log out so that I can close my app.  
-As a user I want to see my main page as first so that I can easily see my recipies
-As a user I want to modify, remove and add cards to my cookbook app
-As a user I want to see how many times I cook certain meal (assign by stars)
-||||||| merged common ancestors
-## User Stories
-As a user I want sing up so that I have own access
-As a user I want to log in so that I can see my stuff
-As a user I want to log out so that I can close my app.  
-As a user I want to see my main page as first so that I can easily see my recipies
-As a user I want to modify, remove and add cards to my cookbook app
-As a user I want to see how many times I cook certain meal (assign by stars)
-=======
 # Project 3 - Creating cookbook
 This project is built for [Code Institute](https://codeinstitute.net/) as a part of _Full Stack Software Development Diploma course_. Project was focused on using semantic HTML5, SASS along with Materialize, Python (Flask), AJAX using jQuery as well as working with noSQL database MongoDB Atlas.
 
@@ -133,4 +116,3 @@ Live version of the website can be found [here](https://tomas-kaiser.github.io/C
 
 ## Contributing
 This repository is a part of project for Code Institute of a Full Stack Software Development course. Therefore, I will most likely not accept pull requests.
->>>>>>> develop
