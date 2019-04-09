@@ -1,4 +1,4 @@
-# Project 3 - Creating cookbook
+# Project 3 - Cookbook
 This project is built for [Code Institute](https://codeinstitute.net/) as a part of _Full Stack Software Development Diploma course_. Project was focused on using semantic HTML5, SASS along with Materialize, Python (Flask), AJAX using jQuery as well as working with noSQL database MongoDB Atlas.
 
 ## UX
@@ -44,7 +44,7 @@ I used following technologies for this particular project:
   * [Materialize](https://materializecss.com/)
   * [BEM](http://getbem.com/) - used for cleaner style sheet
 * [Python](https://www.python.org/)
-* [Flask](http://flask.pocoo.org/)
+   * [Flask](http://flask.pocoo.org/)
 * Javascript ([jQuery](https://jquery.com/)) for AJAX
 * [CKEditor](https://ckeditor.com/)
 * [Adobe Xd](https://www.adobe.com/cz/products/xd.html)
