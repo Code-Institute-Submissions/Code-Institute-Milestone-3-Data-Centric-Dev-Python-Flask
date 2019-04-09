@@ -54,7 +54,7 @@ label {
 
 .callout-container {
   height: 100vh;
-  background: url("./img/callout.jpg") no-repeat center center fixed;
+  background: url("../img/callout.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -119,7 +119,7 @@ label {
 }
 
 .bg {
-  background: url("./img/bg.jpg");
+  background: url("../img/bg.jpg");
 }
 .bg h2 {
   position: relative;
