@@ -24,6 +24,11 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# Get flash when extention is not allowed
+def get_flash(username):
+   flash("Extenstion is not allowed. Please, use one of these: png, jpg, jpeg or gif")
+   return redirect(url_for("add_page", username=username))
+
 
 def get_pagination(user, username, current_page):
    # Return to the same page where the card was
@@ -79,7 +84,6 @@ def get_pagination(user, username, current_page):
       )
 
       return render_template("main_page.html", user=show_cards, pages=pages, clicked_page=clicked_page)
-
 
 
 @app.route("/")
@@ -210,8 +214,7 @@ def add_page(username):
          file = request.files['upload_picture']
 
          if not allowed_file(file.filename):
-            flash("Extenstion is not allowed. Please, use one of these: png, jpg, jpeg or gif")
-            return redirect(url_for("add_page", username=username))
+            return get_flash(username)
 
          if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -270,6 +273,7 @@ def edit_page(username, recipe_name):
 
    return render_template("edit_cookcard.html", cookcard=cookcard["recipe_cards"][0] )
 
+
 @app.route("/main_page/<username>/update_foodcard/<recipe_name>/<recipe_img>/", methods=['GET', 'POST'])
 def update_cookcard(username, recipe_name, recipe_img):
    if request.method == 'POST':
@@ -280,8 +284,7 @@ def update_cookcard(username, recipe_name, recipe_img):
          file = request.files['upload_picture']
 
          if not allowed_file(file.filename):
-            flash("Extenstion is not allowed. Please, use one of these: png, jpg, jpeg or gif")
-            return redirect(url_for("add_page", username=username))
+            return get_flash(username)
 
          if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
