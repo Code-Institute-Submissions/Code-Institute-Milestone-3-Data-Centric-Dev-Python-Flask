@@ -103,7 +103,7 @@ the highest score is 100
 ```
 
 * HTML & CSS validator
-  * [HTML validator result](https://validator.w3.org) found one error from line 20 as the pipe key is illegal character in query.
+  * [HTML validator result](https://validator.w3.org) found only errors related to template language jinja2.
   * [CSS validator result](https://codebeautify.org/cssvalidate) did not find any major error.
 
 ## Deployment
