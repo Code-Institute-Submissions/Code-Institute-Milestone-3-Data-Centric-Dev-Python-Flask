@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="username" id="name{{ session['username'] }}" name="{{ session['username'] }}">
+<div class="username" id="name{{ session['username'] }}" data-name="{{ session['username'] }}">
    <div class="bg">
       <!-- Logout button -->
       <div class="arrow-back text-align--right"><a href="{{ url_for('logout') }}"

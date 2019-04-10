@@ -3,7 +3,7 @@
 $(".pagination-btn").on("click", function(event) {
 
    let numberOfPag = $(this).text();
-   let username = $(".username").attr("name");
+   let username = $(".username").attr("data-name");
 
    console.log("Id username: " + username);
    console.log("number of clicked: " + numberOfPag);
