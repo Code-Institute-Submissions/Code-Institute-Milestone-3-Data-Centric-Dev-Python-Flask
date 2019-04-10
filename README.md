@@ -16,8 +16,8 @@ This is aiming at people who are passionate about cooking and they'd love to cre
 ### Wireframes:  
 The following wireframes were created in order to provide a starting point for the website skeleton:
 
-* [mobile device](wireframes/Cookbook_desktop.xd)
-* [desktop device](wireframes/Cookbook_mobile.xd)
+* [mobile device](wireframes/mobile)
+* [desktop device](wireframes/desktop)
 
 # Features
 The features were used as follow:
@@ -28,7 +28,7 @@ The features were used as follow:
 
 * Main page
    * Sort button
-   * Add card
+   * Add card button
    * Cookcards which contains upvote (hearts), edit, remove button and recipe after clicking on image, recipe name or recipe button
    * Paginaition in case when there are more then 5 cookcards
 
@@ -74,7 +74,6 @@ The manual testing was accomplished mainly by using following technologies/tools
 
 #### Manual Testing Bugs
 
-
 * Microsoft Edge:
   * Advanced button lost the darker gray color and looks the same as background
     * fixing: added background color #dddddd
@@ -109,7 +108,7 @@ the highest score is 100
 
 ## Deployment
 The website was deployed on github.
-Live version of the website can be found [here](https://tomas-kaiser.github.io/Code-Institute-Milestone-2-Interactive-Frontend-Development/)
+Live version of the website can be found [here]()
 
 ## Credits
 * Smooth scrolldown effect JS [w3schools](https://www.w3schools.com/howto/howto_css_smooth_scroll.asp#section1)
