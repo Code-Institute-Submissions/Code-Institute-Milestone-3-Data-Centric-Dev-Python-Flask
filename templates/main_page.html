@@ -57,8 +57,8 @@
                <div class="card-image waves-effect waves-block waves-light">
                   {% if recipe_card.img == "empty" %}
                   <img class="activator"
-                     src="https://shop.countdown.co.nz/Content/Recipes/diamond_spagbol_540x380_5.jpg"
-                     alt="default picture of meal">
+                     src="{{ url_for('static', filename='img/placeholder4.png') }}"
+                     alt="default picture">
                   {% else %}
                   <img class="activator" src="{{ url_for('file', filename=recipe_card.img) }}" alt="picture of meal">
                   {% endif %}
