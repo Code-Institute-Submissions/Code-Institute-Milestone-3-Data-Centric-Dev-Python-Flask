@@ -31,7 +31,7 @@ $(".pagination-arrow-forward").on("click", function(event) {
 
    let numberOfPag = $(".active").text();
    numberOfPag++;
-   let username = $(".username").attr("name");
+   let username = $(".username").attr("data-name");
 
    console.log("number of clicked: " + numberOfPag);  
    console.log("Id username: " + username);
@@ -59,7 +59,7 @@ $(".pagination-arrow-backward").on("click", function(event) {
 
    let numberOfPag = $(".active").text();
    numberOfPag--;
-   let username = $(".username").attr("name");
+   let username = $(".username").attr("data-name");
 
    $.ajax({
       data: {
