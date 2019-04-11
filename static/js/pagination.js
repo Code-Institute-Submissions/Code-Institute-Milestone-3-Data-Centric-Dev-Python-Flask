@@ -5,9 +5,6 @@ $(".pagination-btn").on("click", function(event) {
    let numberOfPag = $(this).text();
    let username = $(".username").attr("data-name");
 
-   console.log("Id username: " + username);
-   console.log("number of clicked: " + numberOfPag);
-
    $.ajax({
       data: {
          page_number: numberOfPag
@@ -17,9 +14,6 @@ $(".pagination-btn").on("click", function(event) {
    })
    .done(function(data) {
       $("#name"+username).html(data);
-
-      console.log("Data returned here:")
-      console.log(data);
    });
 
    event.preventDefault();
@@ -33,9 +27,6 @@ $(".pagination-arrow-forward").on("click", function(event) {
    numberOfPag++;
    let username = $(".username").attr("data-name");
 
-   console.log("number of clicked: " + numberOfPag);  
-   console.log("Id username: " + username);
-
    $.ajax({
       data: {
          page_number: numberOfPag
@@ -45,9 +36,6 @@ $(".pagination-arrow-forward").on("click", function(event) {
    })
    .done(function(data) {
       $("#name"+username).html(data);
-
-      console.log("Data returned here:")
-     // console.log(data);
    });
 
    event.preventDefault();
