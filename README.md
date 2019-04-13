@@ -117,7 +117,7 @@ The following section describes the process deploying to Heroku:
 * Select settings. Select `Reveal Config`. Add IP 0.0.0.0, PORT 5000, connection to MongoDB using MONGO_URI and SECRET_KEY.
 * Select Restart all dynos and open app.
 
-You can also fork this repo and run in your CLI whit command `python run.py`.
+You can also fork this repo and run in your CLI with command `python run.py`.
 
 ## Credits
 * Smooth scrolldown effect JS [w3schools](https://www.w3schools.com/howto/howto_css_smooth_scroll.asp#section1)
