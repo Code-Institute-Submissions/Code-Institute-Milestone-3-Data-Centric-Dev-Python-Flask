@@ -14,8 +14,8 @@ app = Flask(__name__)
 
 # Connection to MongoDB Atlas
 app.config["MONGO_DBNAME"] = "cookbook"
-app.config["MONGO_URI"] = os.getenv('MONGODB_URI_COOKBOOK')
-app.secret_key = '_5#y2L"F4Q8z\n\xec]/' #TODO this should be hidden - use os.getenv()
+app.config["MONGO_URI"] = os.getenv("MONGODB_URI_COOKBOOK")
+app.secret_key = os.getenv("MONGODB_COOKBOOK_SECRET_KEY")
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
