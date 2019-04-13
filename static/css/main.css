@@ -80,6 +80,12 @@ label {
 }
 .callout-container .jumbotron h1 {
   padding-top: 10px;
+  font-size: 3.2rem;
+}
+@media (min-width: 375px) {
+  .callout-container .jumbotron h1 {
+    font-size: 4.2rem;
+  }
 }
 .callout-container .waves-effect {
   margin: 33px;
