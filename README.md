@@ -1,6 +1,8 @@
 # Project 3 - Cookbook
 This project is built for [Code Institute](https://codeinstitute.net/) as a part of _Full Stack Software Development Diploma course_. Project was focused on using semantic HTML5, SASS along with Materialize, Python (Flask), AJAX using jQuery as well as working with noSQL database MongoDB Atlas.
 
+Live version [here](https://cookbook-flask-mongo.herokuapp.com/).
+
 ## UX
 This is aiming at people who are passionate about cooking and they'd love to create own cookbook.
 
@@ -33,8 +35,8 @@ The features were used as follow:
    * Paginaition in case when there are more then 5 cookcards
 
 * add/edit page
-   * Contain image upload
-   * Change name of recipe or cuisine
+   * Contain image uploading
+   * Changing name of recipe or cuisine
    * Modifying recipe section by using rich editor
 
 ## Technologies Used
@@ -74,7 +76,7 @@ The manual testing was accomplished mainly by using following technologies/tools
 
 #### Manual Testing Bugs
 
-No bugs found during the manial testing.
+No bugs found during the manual testing.
 
 
 ## Automated Testing
@@ -82,7 +84,7 @@ The automate testing was executed by the following tools:
 
 * Chrome Lighthouse
 
-The Lighthouse is an open-source automated tool that audits website for performance, progresssive Web app, accessibility, best practices & SEO. The website current score as follows:
+The Lighthouse is an open-source automated tool that audits website for performance, accessibility, best practices & SEO. The website current score as follows:
 
 ```
 > Performance at 87
@@ -98,8 +100,9 @@ the highest score is 100
   * [CSS validator result](https://codebeautify.org/cssvalidate) did not find any major error.
 
 ## Deployment
-The website was deployed on github.
-Live version of the website can be found [here](https://cookbook-flask-mongo.herokuapp.com/)
+The website was deployed on github as well as Heroku for sharing live version.
+
+Live version of the website can be found on heroku [here](https://cookbook-flask-mongo.herokuapp.com/).
 
 ## Credits
 * Smooth scrolldown effect JS [w3schools](https://www.w3schools.com/howto/howto_css_smooth_scroll.asp#section1)
