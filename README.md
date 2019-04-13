@@ -70,19 +70,11 @@ The manual testing was accomplished mainly by using following technologies/tools
 
 * Devices
   * Desktop
-  * Mobile Phone
+  * Mobile Phone (Iphone SE)
 
 #### Manual Testing Bugs
 
-* Microsoft Edge:
-  * Advanced button lost the darker gray color and looks the same as background
-    * fixing: added background color #dddddd
-  * `<option value="Prague">The Czech Republic</option>` does not show Prague, but only The Czech Republic.
-
-* Mozilla:
-  * Advanced button lost the darker gray color and looks the same as background
-    * fixing: added background color #dddddd
-  * `<option value="Prague">The Czech Republic</option>` does not show The Czech Republic, but only Prague. 
+No bugs found during the manial testing.
 
 
 ## Automated Testing
@@ -93,11 +85,10 @@ The automate testing was executed by the following tools:
 The Lighthouse is an open-source automated tool that audits website for performance, progresssive Web app, accessibility, best practices & SEO. The website current score as follows:
 
 ```
-> Performance at 82
-> Progresssive Web app at 58
-> Accessibility at 83
-> Best practices at 87
-> SEO at 100
+> Performance at 87
+> Accessibility at 91
+> Best practices at 79
+> SEO at 89
 
 the highest score is 100
 ```
@@ -108,7 +99,7 @@ the highest score is 100
 
 ## Deployment
 The website was deployed on github.
-Live version of the website can be found [here]()
+Live version of the website can be found [here](https://cookbook-flask-mongo.herokuapp.com/)
 
 ## Credits
 * Smooth scrolldown effect JS [w3schools](https://www.w3schools.com/howto/howto_css_smooth_scroll.asp#section1)
