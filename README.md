@@ -105,6 +105,20 @@ The website was deployed on github as well as Heroku for sharing live version.
 
 Live version of the website can be found on heroku [here](https://cookbook-flask-mongo.herokuapp.com/).
 
+The following section describes the process deploying to Heroku:
+
+* Ensure all required technologies are installed locally, as per the requirements.txt.
+* Use CLI, login to Heroku
+* Create new Heroku app, using `heroku apps:create appname` command.
+* Push project to Heroku, using `push -u heroku master` command.
+* Create scale, `heroku ps:scale web=1` command.
+* Create a Procfile.
+* Login to Heroku and select newly created app.
+* Select settings. Select `Reveal Config`. Add IP 0.0.0.0, PORT 5000, connection to MongoDB using MONGO_URI and SECRET_KEY.
+* Select Restart all dynos and open app.
+
+You can also fork this repo and run in your CLI whit command `python run.py`.
+
 ## Credits
 * Smooth scrolldown effect JS [w3schools](https://www.w3schools.com/howto/howto_css_smooth_scroll.asp#section1)
 
