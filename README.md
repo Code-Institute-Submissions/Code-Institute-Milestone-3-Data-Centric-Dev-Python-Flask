@@ -47,6 +47,7 @@ I used following technologies for this particular project:
   * [BEM](http://getbem.com/) - used for cleaner style sheet
 * [Python](https://www.python.org/)
    * [Flask](http://flask.pocoo.org/)
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 * Javascript ([jQuery](https://jquery.com/)) for AJAX
 * [CKEditor](https://ckeditor.com/)
 * [Adobe Xd](https://www.adobe.com/cz/products/xd.html)
