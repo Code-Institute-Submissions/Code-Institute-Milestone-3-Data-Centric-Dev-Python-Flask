@@ -56,6 +56,10 @@ label {
    height: 425px !important;
 }
 
+.cover-img {
+   object-fit: cover;
+}
+
 // Landing page - navbar
 .login {
    background-color: rgba(255, 255, 255, 0.637) !important;

@@ -56,11 +56,11 @@
 
                <div class="card-image waves-effect waves-block waves-light">
                   {% if recipe_card.img == "empty" %}
-                  <img class="activator"
+                  <img class="activator cover-img"
                      src="{{ url_for('static', filename='img/placeholder4.png') }}"
                      alt="default picture">
                   {% else %}
-                  <img class="activator" src="{{ url_for('file', filename=recipe_card.img) }}" alt="picture of meal">
+                  <img class="activator cover-img" src="{{ url_for('file', filename=recipe_card.img) }}" alt="picture of meal">
                   {% endif %}
                </div>
 
