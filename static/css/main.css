@@ -48,6 +48,10 @@ label {
   padding-left: 12px;
 }
 
+.card-height-425px {
+  height: 425px !important;
+}
+
 .login {
   background-color: rgba(255, 255, 255, 0.637) !important;
   color: #e76114 !important;
@@ -171,7 +175,7 @@ label {
   line-height: 20.4px !important;
 }
 .container-cards .add-card {
-  height: 400px;
+  height: 425px;
   border: 2px solid #e76114;
   display: flex;
   justify-content: center;

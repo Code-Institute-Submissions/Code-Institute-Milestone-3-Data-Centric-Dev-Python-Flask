@@ -52,6 +52,10 @@ label {
    padding-left: 12px;
 }
 
+.card-height-425px {
+   height: 425px !important;
+}
+
 // Landing page - navbar
 .login {
    background-color: rgba(255, 255, 255, 0.637) !important;
@@ -207,7 +211,7 @@ label {
    }
 
    .add-card {
-      height: 400px;
+      height: 425px;
       border: 2px solid #e76114;
 
       display: flex;
